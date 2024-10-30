@@ -20,6 +20,9 @@ class _WavyLineScreenState extends State<WavyLineScreen> {
   final TextEditingController namecontroller = TextEditingController();
   final ProgressController1 progressController = Get.put(ProgressController1());
 
+  // Step 1: Create a GlobalKey for the Form
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   void _startProgress() {
     if (_timer == null) {
       const duration = Duration(milliseconds: 100);
@@ -36,7 +39,7 @@ class _WavyLineScreenState extends State<WavyLineScreen> {
 
   void _onNameChanged(String value) {
     if (value.isNotEmpty) {
-      progressController.progress1.value = 0.1; // Initial progress value
+      progressController.progress1.value = 0.3; // Initial progress value
       _startProgress();
     } else {
       progressController.resetProgress();
@@ -69,7 +72,7 @@ class _WavyLineScreenState extends State<WavyLineScreen> {
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 250, 232),
-      resizeToAvoidBottomInset: false, // Adjust layout when keyboard appears
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Column(
@@ -87,58 +90,63 @@ class _WavyLineScreenState extends State<WavyLineScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const Text(
-                    "What’s your full\nname?",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+              Form(
+                key: _formKey, // Step 2: Wrap the fields with a Form widget
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "What’s your full\nname?",
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                      textAlign: TextAlign.left,
                     ),
-                    textAlign: TextAlign.left,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: CustomTextFormField(
-                      hintText: "Enter your name",
-                      controller: namecontroller,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your name';
-                        }
-                        final nameRegex = RegExp(r'^[a-zA-Z\s]+$');
-                        if (!nameRegex.hasMatch(value)) {
-                          return 'Please enter a valid name (letters and spaces only)';
-                        }
-                        return null;
-                      },
-                      onChanged: (value) {},
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: CustomTextFormField(
+                        hintText: "Enter your name",
+                        controller: namecontroller,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your name';
+                          }
+                          final nameRegex = RegExp(r'^[a-zA-Z\s]+$');
+                          if (!nameRegex.hasMatch(value)) {
+                            return 'Please enter a valid name (letters and spaces only)';
+                          }
+                          return null;
+                        },
+                        onChanged: (value) {
+                          _onNameChanged(value);
+                        },
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SvgPicture.asset(
-                          "assets/logo/logo3.svg",
-                          width: 24,
-                          height: 24,
-                        ),
-                        const SizedBox(width: 8),
-                        const Text(
-                          "This name will be displayed on your profile ",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 13,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SvgPicture.asset(
+                            "assets/logo/logo3.svg",
+                            width: 24,
+                            height: 24,
                           ),
-                        ),
-                      ],
+                          const SizedBox(width: 8),
+                          const Text(
+                            "This name will be displayed on your profile ",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
@@ -179,8 +187,14 @@ class _WavyLineScreenState extends State<WavyLineScreen> {
             child: RoundButton(
               title: 'Next',
               onTap: () {
-                Get.to(const WavyLineScreen2());
-                print('Next button tapped');
+                // Step 3: Validate the form before navigation
+                if (_formKey.currentState!.validate()) {
+                  Get.to(const WavyLineScreen2());
+                  print(
+                      'Next button tapped with valid name: ${namecontroller.text}');
+                } else {
+                  print('Form is not valid');
+                }
               },
             ),
           ),

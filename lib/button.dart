@@ -116,6 +116,7 @@ class CustomTextFormField extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
   final bool obscureText;
+  final TextInputType? keyboardType;
 
   final String? Function(String?)? validator;
 
@@ -125,6 +126,7 @@ class CustomTextFormField extends StatelessWidget {
     required this.controller,
     this.obscureText = false,
     this.validator,
+    this.keyboardType,
     required Null Function(dynamic value) onChanged,
   }) : super(key: key);
 
@@ -148,6 +150,7 @@ class CustomTextFormField extends StatelessWidget {
         ),
       ),
       child: TextFormField(
+        keyboardType: keyboardType,
         controller: controller,
         obscureText: obscureText,
         validator: validator,
