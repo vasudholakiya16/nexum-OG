@@ -292,28 +292,31 @@ class SelectedOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        height: 40,
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(20),
-          border: const Border(
-            top: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 1),
-            left: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 1),
-            right: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 3),
-            bottom: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 3),
+    return Flexible(
+      fit: FlexFit.tight,
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          height: 40,
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(20),
+            border: const Border(
+              top: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 1),
+              left: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 1),
+              right: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 3),
+              bottom: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 3),
+            ),
           ),
-        ),
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              title,
-              style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),

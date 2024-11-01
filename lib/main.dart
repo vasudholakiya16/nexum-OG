@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/pg1.dart';
+import 'package:flutter_application_2/pg7.dart';
 import 'package:get/get.dart'; // Import GetX
 
 void main() {
@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Page1(),
+      // home: const Page1(),
+      home: WavyLineScreen6(),
     );
   }
 }
