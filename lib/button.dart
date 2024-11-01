@@ -224,3 +224,101 @@ class CustomDropdownFormField extends StatelessWidget {
     );
   }
 }
+
+// class SelectedOption extends StatelessWidget {
+//   final String title;
+//   final VoidCallback onTap;
+//   final bool loading;
+//   final Color color;
+
+//   const SelectedOption({
+//     Key? key,
+//     required this.title,
+//     required this.onTap,
+//     this.loading = false,
+//     required this.color,
+//   }) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return InkWell(
+//       onTap: onTap,
+//       child: Container(
+//         height: 40,
+//         decoration: BoxDecoration(
+//           color: color,
+//           borderRadius: BorderRadius.circular(20),
+//           border: const Border(
+//             top: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 1),
+//             left: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 1),
+//             right: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 3),
+//             bottom: BorderSide(
+//               color: Color.fromARGB(255, 0, 0, 0),
+//               width: 3,
+//             ),
+//           ),
+//         ),
+//         child: Center(
+//           child: loading
+//               ? const CircularProgressIndicator(
+//                   strokeWidth: 3,
+//                   color: Colors.black,
+//                 )
+//               : Padding(
+//                   padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+//                   child: Text(
+//                     title,
+//                     style: const TextStyle(
+//                         color: Colors.black, fontWeight: FontWeight.bold),
+//                   ),
+//                 ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+class SelectedOption extends StatelessWidget {
+  final String title;
+  final VoidCallback onTap;
+  final Color color;
+
+  const SelectedOption({
+    Key? key,
+    required this.title,
+    required this.onTap,
+    required this.color,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 40,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(20),
+          border: const Border(
+            top: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 1),
+            left: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 1),
+            right: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 3),
+            bottom: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 3),
+          ),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              title,
+              style: const TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

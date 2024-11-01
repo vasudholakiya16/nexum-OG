@@ -39,7 +39,7 @@ class _WavyLineScreenState extends State<WavyLineScreen> {
 
   void _onNameChanged(String value) {
     if (value.isNotEmpty) {
-      progressController.progress1.value = 0.3; // Initial progress value
+      // progressController.progress1.value = 0.3; // Initial progress value
       _startProgress();
     } else {
       progressController.resetProgress();

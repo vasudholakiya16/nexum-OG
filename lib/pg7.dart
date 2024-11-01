@@ -2,24 +2,23 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/button.dart';
-import 'package:flutter_application_2/controller/progress_controller_4.dart';
-import 'package:flutter_application_2/pg6.dart';
+import 'package:flutter_application_2/controller/progress_controller_5.dart';
 import 'package:flutter_application_2/wavePointer.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-class WavyLineScreen4 extends StatefulWidget {
-  const WavyLineScreen4({super.key});
+class WavyLineScreen6 extends StatefulWidget {
+  const WavyLineScreen6({super.key});
 
   @override
-  _WavyLineScreen4State createState() => _WavyLineScreen4State();
+  _WavyLineScreen6State createState() => _WavyLineScreen6State();
 }
 
-class _WavyLineScreen4State extends State<WavyLineScreen4> {
+class _WavyLineScreen6State extends State<WavyLineScreen6> {
   Timer? _timer;
   TextEditingController dropdownController = TextEditingController();
   TextEditingController passingYearController = TextEditingController();
-  final ProgressController4 progressController = Get.put(ProgressController4());
+  final ProgressController5 progressController = Get.put(ProgressController5());
   String? _selectedCourses;
   String? genderError;
   String? passingYearError;
@@ -280,7 +279,7 @@ class _WavyLineScreen4State extends State<WavyLineScreen4> {
                   print('Selected Course: $_selectedCourses');
                   print('Passing Year: ${passingYearController.text}');
 
-                  Get.to(const WavyLineScreen5());
+                  // Get.to(const WavyLineScreen5());
                   print('Next button tapped');
                 }
               },
