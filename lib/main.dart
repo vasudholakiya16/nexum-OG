@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/pg1.dart';
+import 'package:flutter_application_2/home.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Page1(),
+      home: const HomePage(),
       // home: WavyLineScreen6(),
     );
   }
