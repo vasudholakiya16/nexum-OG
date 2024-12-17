@@ -1,8 +1,6 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/controller/progress_controller_6.dart';
-import 'package:flutter_application_2/home.dart';
+import 'package:flutter_application_2/HomePage/home.dart';
 import 'package:flutter_application_2/wavePointer.dart';
 import 'package:get/get.dart';
 
