@@ -502,9 +502,17 @@ class _HomePageState extends State<HomePage> {
                                 )),
                           ],
                         ),
-                        // onPressed: () { message-2
                       ),
                     ],
+                  ),
+                ),
+
+                // Add some text below the image
+                const Text(
+                  "ellie.joohnson23: Claudia still missing the event carnival, promising her to buy tickets this time #claudia #projections @krrizzzy",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Color(0xff000000),
                   ),
                 ),
               ],
