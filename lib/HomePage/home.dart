@@ -90,6 +90,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.only(left: 20, top: 20),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     'Communities',
@@ -126,8 +127,21 @@ class _HomePageState extends State<HomePage> {
                                   width: screenHeight * 0.1,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color: const Color(0xff000000),
+                                    border: const Border(
+                                      top: BorderSide(
+                                        color: Color.fromARGB(255, 0, 0, 0),
+                                        width: 1,
+                                      ),
+                                      left: BorderSide(
+                                          color: Color.fromARGB(255, 0, 0, 0),
+                                          width: 1),
+                                      right: BorderSide(
+                                          color: Color.fromARGB(255, 0, 0, 0),
+                                          width: 5),
+                                      bottom: BorderSide(
+                                        color: Color.fromARGB(255, 0, 0, 0),
+                                        width: 7,
+                                      ),
                                     ),
                                     image: DecorationImage(
                                       image: AssetImage(imagePaths[index]),
@@ -241,20 +255,41 @@ class _HomePageState extends State<HomePage> {
                                     SizedBox(
                                       height: 10,
                                     ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                    Column(
                                       children: [
-                                        Text(
-                                          text[index],
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              text[index],
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Text("🔥"),
+                                            Text("🔥"),
+                                            Text("🔥"),
+                                          ],
                                         ),
-                                        Text("🔥"),
-                                        Text("🔥"),
-                                        Text("🔥"),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        const Row(
+                                          children: [
+                                            Icon(
+                                              Icons.location_on_outlined,
+                                              color: Color(0xff595854),
+                                            ),
+                                            Text(
+                                              'Near food court',
+                                              style: TextStyle(
+                                                color: Color(0xff595854),
+                                              ),
+                                            ),
+                                          ],
+                                        )
                                       ],
                                     ),
                                   ],
@@ -263,6 +298,211 @@ class _HomePageState extends State<HomePage> {
                             );
                           },
                         ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+
+            // code for feed
+
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            height: 40,
+                            width: 40,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color(0xffFFD700),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Column(
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Ellie johnson',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Container(
+                                    width: screenHeight * 0.04,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.rectangle,
+                                      color: Color(0xffFFD700),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(17)),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'PIET',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Color(0xff0D0D10),
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const Text(
+                                'Projections’24',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Color(0xff595854),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      TextButton(
+                          onPressed: () {},
+                          child: Container(
+                            height: 30,
+                            width: 30,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              color: Color(0xffFFFCEF),
+                              borderRadius: BorderRadius.circular(10),
+                              border: const Border(
+                                top: BorderSide(
+                                  color: Color.fromARGB(255, 0, 0, 0),
+                                  width: 1,
+                                ),
+                                left: BorderSide(
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    width: 1),
+                                right: BorderSide(
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    width: 4),
+                                bottom: BorderSide(
+                                  color: Color.fromARGB(255, 0, 0, 0),
+                                  width: 5,
+                                ),
+                              ),
+                            ),
+                            child: const Icon(
+                              Icons.more_horiz_rounded,
+                              color: Color(0xff0D0D10),
+                            ),
+                          )),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Image.asset("assets/images/img.png"),
+
+                // code for like and comment
+
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                selectedIcons[1] = !selectedIcons[1];
+                              });
+                            },
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  selectedIcons[1]
+                                      ? 'assets/images/star_2.png'
+                                      : "assets/images/star_1.png",
+                                  height: 30,
+                                  width: 30,
+                                ),
+                                const Text("Like",
+                                    style: TextStyle(
+                                      color: Color(0xff000000),
+                                    )),
+                              ],
+                            ),
+                            // onPressed: () { message-2
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  'assets/images/message-2.png',
+                                  height: 30,
+                                  width: 30,
+                                ),
+                                const Text("Comment",
+                                    style: TextStyle(
+                                      color: Color(0xff000000),
+                                    )),
+                              ],
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  'assets/images/send-2.png',
+                                  height: 30,
+                                  width: 30,
+                                ),
+                                const Text("Share",
+                                    style: TextStyle(
+                                      color: Color(0xff000000),
+                                    )),
+                              ],
+                            ),
+                            // onPressed: () { frame
+                          ),
+                        ],
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          setState(() {
+                            selectedIcons[2] = !selectedIcons[2];
+                          });
+                        },
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              selectedIcons[2]
+                                  ? 'assets/images/frame.png'
+                                  : "assets/images/frame_1.png",
+                              height: 30,
+                              width: 30,
+                            ),
+                            const Text("Save",
+                                style: TextStyle(
+                                  color: Color(0xff000000),
+                                )),
+                          ],
+                        ),
+                        // onPressed: () { message-2
                       ),
                     ],
                   ),
