@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/controller/progress_controller_6.dart';
 import 'package:flutter_application_2/HomePage/home.dart';
+import 'package:flutter_application_2/controller/progress_controller_6.dart';
 import 'package:flutter_application_2/wavePointer.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +19,7 @@ class _WavyLineScreen6State extends State<WavyLineScreen6> {
     super.initState();
 
     Future.delayed(const Duration(seconds: 5), () {
-      Get.to(() => const HomePage());
+      Get.to(() => const Home());
     });
   }
 
