@@ -491,8 +491,8 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Image.asset(
                               selectedIcons[2]
-                                  ? 'assets/images/frame.png'
-                                  : "assets/images/frame_1.png",
+                                  ? 'assets/images/frame_1.png'
+                                  : "assets/images/frame.png",
                               height: 30,
                               width: 30,
                             ),
