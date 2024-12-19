@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -463,7 +464,9 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              SharePostBottomSheet.show(context);
+                            },
                             child: Column(
                               children: [
                                 Image.asset(
@@ -520,6 +523,182 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+// CODE FOR Share the Post
+
+// void _showBottomSheet(BuildContext context) {
+//   final mq = MediaQuery.of(context).size; // Initialize mq here
+
+//   showModalBottomSheet(
+//     backgroundColor: Color(0xffFFFCEF),
+//     context: context,
+//     shape: const RoundedRectangleBorder(
+//       borderRadius: BorderRadius.only(
+//         topLeft: Radius.circular(20),
+//         topRight: Radius.circular(20),
+//       ),
+//     ),
+//     builder: (BuildContext context) {
+//       return Padding(
+//         padding: const EdgeInsets.all(8.0),
+//         child: Column(
+//           mainAxisSize: MainAxisSize.min,
+//           mainAxisAlignment: MainAxisAlignment.start,
+//           children: [
+//             Align(
+//               alignment: Alignment.topLeft,
+//               child: IconButton(
+//                 onPressed: () {
+//                   Navigator.pop(context);
+//                 },
+//                 icon: const Icon(
+//                   Icons.cancel_outlined,
+//                   color: Color(0xff313134),
+//                 ),
+//               ),
+//             ),
+//             const Padding(
+//               padding: EdgeInsets.all(8.0),
+//               child: Align(
+//                 alignment: Alignment.topLeft,
+//                 child: Text(
+//                   'Share Post',
+//                   style: TextStyle(
+//                     fontSize: 20,
+//                     fontWeight: FontWeight.bold,
+//                   ),
+//                 ),
+//               ),
+//             ),
+
+//             // GridView with 2 columns
+//             Expanded(
+//               child: GridView.builder(
+//                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+//                   crossAxisCount: 2, // 2 items per row
+//                   crossAxisSpacing: 2.0, // Space between columns
+//                   mainAxisSpacing: 2.0, // Space between rows
+//                   childAspectRatio: 3.0,
+//                 ),
+//                 itemCount: 9, // Number of items to show
+//                 itemBuilder: (BuildContext context, int index) {
+//                   // Create each item with the selected option
+//                   List<String> titles = [
+//                     'Vasu',
+//                     'Het',
+//                     'Ashish',
+//                     'Pinkesh',
+//                     'Vasu',
+//                     'Het',
+//                     'Ashish',
+//                     'Pinkesh',
+//                     "Jay"
+//                   ];
+//                   return SelectedOption1(
+//                     title: titles[index],
+//                     onTap: () {},
+//                     image: 'assets/images/Group 34213.png',
+//                   );
+//                 },
+//               ),
+//             ),
+//           ],
+//         ),
+//       );
+//     },
+//   );
+// }
+
+class SharePostBottomSheet extends StatelessWidget {
+  const SharePostBottomSheet({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final mq = MediaQuery.of(context).size; // Initialize mq here
+
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        // mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Align(
+            alignment: Alignment.topLeft,
+            child: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(
+                Icons.cancel_outlined,
+                color: Color(0xff313134),
+              ),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                'Share Post',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+
+          // GridView with 2 columns
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // 2 items per row
+                crossAxisSpacing: 2.0, // Space between columns
+                mainAxisSpacing: 2.0, // Space between rows
+                childAspectRatio: 3.0,
+              ),
+              itemCount: 9, // Number of items to show
+              itemBuilder: (BuildContext context, int index) {
+                List<String> titles = [
+                  'Vasu',
+                  'Het',
+                  'Ashish',
+                  'Pinkesh',
+                  'Vasu',
+                  'Het',
+                  'Ashish',
+                  'Pinkesh',
+                  "Jay"
+                ];
+                return SelectedOption1(
+                  title: titles[index],
+                  onTap: () {},
+                  image: 'assets/images/Group 34213.png',
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  static void show(BuildContext context) {
+    showModalBottomSheet(
+      backgroundColor: const Color(0xffFFFCEF),
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      builder: (BuildContext context) {
+        return const SharePostBottomSheet();
+      },
     );
   }
 }

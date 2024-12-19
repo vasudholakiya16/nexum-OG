@@ -325,3 +325,100 @@ class SelectedOption extends StatelessWidget {
     );
   }
 }
+
+class SelectedOption1 extends StatefulWidget {
+  final String title;
+  final VoidCallback onTap;
+  final String image;
+
+  const SelectedOption1({
+    Key? key,
+    required this.title,
+    required this.onTap,
+    required this.image,
+  }) : super(key: key);
+
+  @override
+  _SelectedOption1State createState() => _SelectedOption1State();
+}
+
+class _SelectedOption1State extends State<SelectedOption1> {
+  // This variable holds the state of the button
+  int _tapState = 0; // 0: default, 1: pressed, 2: second tapped
+
+  // This method handles the tap event.
+  void _onTapHandler() {
+    setState(() {
+      _tapState = (_tapState + 1) % 3; // Cycle through 3 states (0, 1, 2)
+    });
+    widget.onTap(); // Call the external callback
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Color textColor = Colors.black; // Default color
+    Color backgroundColor = Colors.transparent; // Default background color
+
+    // Assign colors based on the _tapState value
+    switch (_tapState) {
+      case 1:
+        textColor = Colors.white;
+        backgroundColor = Colors.black;
+        break;
+      case 2:
+        textColor = Colors.white;
+        backgroundColor = Colors.black; // Blue background on second tap
+        break;
+      default:
+        break;
+    }
+
+    return Flexible(
+      fit: FlexFit.tight,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: InkWell(
+          onTap: _onTapHandler,
+          onHighlightChanged: (isHighlighted) {
+            if (_tapState == 0) {
+              setState(() {
+                _tapState = isHighlighted ? 1 : 0;
+              });
+            }
+          },
+          child: Container(
+            height: 40,
+            decoration: BoxDecoration(
+              color: backgroundColor,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: Color(0xffBFBDB3), // Light border color
+                width: 1,
+              ),
+            ),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    widget.image,
+                    width: 28,
+                    height: 28,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    widget.title,
+                    style: TextStyle(
+                      color: textColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
