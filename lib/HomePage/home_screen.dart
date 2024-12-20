@@ -377,7 +377,38 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            // ExitDialog.show(context);
+                            // gentert one dropdown menu
+
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Container(
+                                  height: 150,
+                                  color: Colors.white,
+                                  child: Column(
+                                    children: [
+                                      ListTile(
+                                        title: const Text('Report'),
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                          ExitDialog.show(context);
+                                        },
+                                      ),
+                                      ListTile(
+                                        title: const Text('Unfollow'),
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                          Unfollow.show(context);
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          },
                           child: Container(
                             height: 30,
                             width: 30,
@@ -526,6 +557,244 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+/// CODE FOR Unfollow Dialog
+
+class Unfollow extends StatefulWidget {
+  const Unfollow({Key? key}) : super(key: key);
+
+  @override
+  _UnfollowState createState() => _UnfollowState();
+
+  static void show(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const ExitDialog();
+      },
+    );
+  }
+}
+
+class _UnfollowState extends State<Unfollow> {
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+        side: const BorderSide(
+          color: Colors.black, // Border color
+          width: 5, // Border width
+        ),
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          IconButton(
+            onPressed: () {
+              Navigator.pop(context); // Close exit dialog
+            },
+            icon: const Icon(
+              Icons.cancel_outlined,
+            ),
+          ),
+          const Column(
+            children: [
+              Text(
+                "Unfollow \n @ellie.johnson23?",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 16),
+              Text(
+                "User Report: Multiple users have flagged concerns regarding missed events and delayed ticket purchases.",
+                style: TextStyle(fontSize: 14, color: Colors.grey),
+              ),
+            ],
+          ),
+        ],
+      ),
+      actions: [
+        Center(
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pop(context); // Close the current dialog
+                },
+                child: const Text(
+                  "Send Report!",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+/// CODE FOR Report Dialog
+
+class ExitDialog extends StatefulWidget {
+  const ExitDialog({Key? key}) : super(key: key);
+
+  @override
+  _ExitDialogState createState() => _ExitDialogState();
+
+  static void show(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const ExitDialog();
+      },
+    );
+  }
+}
+
+class _ExitDialogState extends State<ExitDialog> {
+  // Function to show the success dialog after the report is sent
+  void _showSuccessDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+            side: const BorderSide(
+              color: Colors.black, // Border color
+              width: 5, // Border width
+            ),
+          ),
+          content: const Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.check_circle_sharp,
+                color: Colors.black,
+                size: 50,
+              ),
+              SizedBox(height: 16),
+              Text(
+                "Report Sent",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              SizedBox(height: 8),
+              Text(
+                "khao peeo khush rahi paaji, zindagi badi choti h, kab tk ye sab krte rahoge!",
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pop(context); // Close success dialog
+                    },
+                    child: const Text(
+                      "OK",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+        side: const BorderSide(
+          color: Colors.black, // Border color
+          width: 5, // Border width
+        ),
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          IconButton(
+            onPressed: () {
+              Navigator.pop(context); // Close exit dialog
+            },
+            icon: const Icon(
+              Icons.cancel_outlined,
+            ),
+          ),
+          Column(
+            children: [
+              // Image widget
+              Image.asset(
+                'assets/images/warning-2.png',
+                width: 50,
+                height: 50,
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                "Report!",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                "User Report: Multiple users have flagged concerns regarding missed events and delayed ticket purchases.",
+                style: TextStyle(fontSize: 14, color: Colors.grey),
+              ),
+            ],
+          ),
+        ],
+      ),
+      actions: [
+        Center(
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pop(context); // Close the current dialog
+                  _showSuccessDialog(context); // Show success dialog
+                },
+                child: const Text(
+                  "Send Report!",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
