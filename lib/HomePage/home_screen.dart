@@ -835,37 +835,10 @@ class _CommentPostBottomSheetState extends State<CommentPostBottomSheet> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          // Align(
-          //   alignment: Alignment.topLeft,
-          //   child: IconButton(
-          //     onPressed: () {
-          //       Navigator.pop(context);
-          //     },
-          //     icon: const Icon(
-          //       Icons.cancel_outlined,
-          //       color: Color(0xff313134),
-          //     ),
-          //   ),
-          // ),
-          // const Padding(
-          //   padding: EdgeInsets.all(8.0),
-          //   child: Align(
-
-          //     alignment: Alignment.center,
-          //     child: Text(
-          //       'Share Post',
-          //       style: TextStyle(
-          //         fontSize: 20,
-          //         fontWeight: FontWeight.bold,
-          //       ),
-          //     ),
-
-          //   ),
-          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'Comments',
                 style: TextStyle(
                   fontSize: 20,
