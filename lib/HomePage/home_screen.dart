@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HomePage extends StatefulWidget {
@@ -448,7 +448,9 @@ class _HomePageState extends State<HomePage> {
                             // onPressed: () { message-2
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              CommentPostBottomSheet.show(context);
+                            },
                             child: Column(
                               children: [
                                 Image.asset(
@@ -529,100 +531,76 @@ class _HomePageState extends State<HomePage> {
 
 // CODE FOR Share the Post
 
-// void _showBottomSheet(BuildContext context) {
-//   final mq = MediaQuery.of(context).size; // Initialize mq here
-
-//   showModalBottomSheet(
-//     backgroundColor: Color(0xffFFFCEF),
-//     context: context,
-//     shape: const RoundedRectangleBorder(
-//       borderRadius: BorderRadius.only(
-//         topLeft: Radius.circular(20),
-//         topRight: Radius.circular(20),
-//       ),
-//     ),
-//     builder: (BuildContext context) {
-//       return Padding(
-//         padding: const EdgeInsets.all(8.0),
-//         child: Column(
-//           mainAxisSize: MainAxisSize.min,
-//           mainAxisAlignment: MainAxisAlignment.start,
-//           children: [
-//             Align(
-//               alignment: Alignment.topLeft,
-//               child: IconButton(
-//                 onPressed: () {
-//                   Navigator.pop(context);
-//                 },
-//                 icon: const Icon(
-//                   Icons.cancel_outlined,
-//                   color: Color(0xff313134),
-//                 ),
-//               ),
-//             ),
-//             const Padding(
-//               padding: EdgeInsets.all(8.0),
-//               child: Align(
-//                 alignment: Alignment.topLeft,
-//                 child: Text(
-//                   'Share Post',
-//                   style: TextStyle(
-//                     fontSize: 20,
-//                     fontWeight: FontWeight.bold,
-//                   ),
-//                 ),
-//               ),
-//             ),
-
-//             // GridView with 2 columns
-//             Expanded(
-//               child: GridView.builder(
-//                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-//                   crossAxisCount: 2, // 2 items per row
-//                   crossAxisSpacing: 2.0, // Space between columns
-//                   mainAxisSpacing: 2.0, // Space between rows
-//                   childAspectRatio: 3.0,
-//                 ),
-//                 itemCount: 9, // Number of items to show
-//                 itemBuilder: (BuildContext context, int index) {
-//                   // Create each item with the selected option
-//                   List<String> titles = [
-//                     'Vasu',
-//                     'Het',
-//                     'Ashish',
-//                     'Pinkesh',
-//                     'Vasu',
-//                     'Het',
-//                     'Ashish',
-//                     'Pinkesh',
-//                     "Jay"
-//                   ];
-//                   return SelectedOption1(
-//                     title: titles[index],
-//                     onTap: () {},
-//                     image: 'assets/images/Group 34213.png',
-//                   );
-//                 },
-//               ),
-//             ),
-//           ],
-//         ),
-//       );
-//     },
-//   );
-// }
-
-class SharePostBottomSheet extends StatelessWidget {
+class SharePostBottomSheet extends StatefulWidget {
   const SharePostBottomSheet({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final mq = MediaQuery.of(context).size; // Initialize mq here
+  _SharePostBottomSheetState createState() => _SharePostBottomSheetState();
 
+  // Static method to show the SharePostBottomSheet
+  static void show(BuildContext context) {
+    showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      builder: (BuildContext context) {
+        return Padding(
+          padding: const EdgeInsets.only(
+              top: 16.0, right: 16.0, left: 16.0), // Padding around the content
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Color(0xffFFFCEF), // Background color of the container
+              border: Border(
+                top: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 2),
+                left: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 2),
+                right:
+                    BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 7),
+                bottom:
+                    BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 4),
+              ),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ), // Circular border
+            ),
+            child: const SharePostBottomSheet(),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _SharePostBottomSheetState extends State<SharePostBottomSheet> {
+  List<bool> _selectedItems = List.generate(13, (index) => false);
+
+  TextEditingController _controller = TextEditingController();
+
+  void _shareMessage() {
+    String message = _controller.text.trim();
+    if (message.isNotEmpty) {
+      Share.share(message); // Using share_plus to share the message
+    } else {
+      // Optionally, show a message if the text field is empty
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Please enter a message to share")),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final screenWidth = mediaQuery.size.width;
+    final screenHeight = mediaQuery.size.height;
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(16.0),
       child: Column(
-        // mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Align(
@@ -650,17 +628,15 @@ class SharePostBottomSheet extends StatelessWidget {
               ),
             ),
           ),
-
-          // GridView with 2 columns
           Expanded(
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, // 2 items per row
-                crossAxisSpacing: 2.0, // Space between columns
-                mainAxisSpacing: 2.0, // Space between rows
-                childAspectRatio: 3.0,
+                crossAxisCount: 2,
+                crossAxisSpacing: 10.0,
+                mainAxisSpacing: 7.0,
+                childAspectRatio: 3.5,
               ),
-              itemCount: 9, // Number of items to show
+              itemCount: 13,
               itemBuilder: (BuildContext context, int index) {
                 List<String> titles = [
                   'Vasu',
@@ -671,24 +647,131 @@ class SharePostBottomSheet extends StatelessWidget {
                   'Het',
                   'Ashish',
                   'Pinkesh',
-                  "Jay"
+                  'Jay',
+                  'Het',
+                  'Ashish',
+                  'Pinkesh',
+                  'Jay',
                 ];
-                return SelectedOption1(
-                  title: titles[index],
-                  onTap: () {},
-                  image: 'assets/images/Group 34213.png',
+
+                List<String> imagePaths = [
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                ];
+
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _selectedItems[index] = !_selectedItems[index];
+                    });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Color(0xffBFBDB3), // Set the color of the border
+                        width: 1.0, // Set the width of the border
+                      ),
+                      color: _selectedItems[index]
+                          ? Colors.black
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    child: Center(
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            imagePaths[
+                                index], // Display the image from the list
+                            height: 30,
+                            width: 30,
+                          ),
+                          const SizedBox(
+                              width:
+                                  8), // Optional space between image and text
+                          Text(
+                            titles[index],
+                            style: TextStyle(
+                              color: _selectedItems[index]
+                                  ? Colors.white
+                                  : Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 );
               },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Color(0xffBFBDB3),
+                  width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Search field
+                  Container(
+                    width: screenWidth * 0.5,
+                    margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: TextField(
+                      controller: _controller,
+                      decoration: const InputDecoration(
+                        hintText: 'Enter Your Message...',
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+
+                  // IconButton for sharing the message
+                  IconButton(
+                    icon: const Icon(Icons.send),
+                    onPressed: _shareMessage, // Share function when clicked
+                    color: const Color.fromARGB(
+                        255, 82, 81, 79), // Optional: Customize color
+                  ),
+                ],
+              ),
             ),
           ),
         ],
       ),
     );
   }
+}
 
+// CODE FOR Comment the Post
+
+class CommentPostBottomSheet extends StatefulWidget {
+  const CommentPostBottomSheet({Key? key}) : super(key: key);
+
+  @override
+  _CommentPostBottomSheetState createState() => _CommentPostBottomSheetState();
+
+  // Static method to show the SharePostBottomSheet
   static void show(BuildContext context) {
     showModalBottomSheet(
-      backgroundColor: const Color(0xffFFFCEF),
+      backgroundColor: Colors.transparent,
       context: context,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -697,8 +780,213 @@ class SharePostBottomSheet extends StatelessWidget {
         ),
       ),
       builder: (BuildContext context) {
-        return const SharePostBottomSheet();
+        return Padding(
+          padding: const EdgeInsets.only(
+              top: 16.0, right: 16.0, left: 16.0), // Padding around the content
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Color(0xffFFFCEF), // Background color of the container
+              border: Border(
+                top: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 2),
+                left: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 2),
+                right:
+                    BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 7),
+                bottom:
+                    BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 4),
+              ),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ), // Circular border
+            ),
+            child: const SharePostBottomSheet(),
+          ),
+        );
       },
+    );
+  }
+}
+
+class _CommentPostBottomSheetState extends State<CommentPostBottomSheet> {
+  List<bool> _selectedItems = List.generate(13, (index) => false);
+
+  TextEditingController _controller = TextEditingController();
+
+  void _shareMessage() {
+    String message = _controller.text.trim();
+    if (message.isNotEmpty) {
+      Share.share(message); // Using share_plus to share the message
+    } else {
+      // Optionally, show a message if the text field is empty
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Please enter a message to share")),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final screenWidth = mediaQuery.size.width;
+    final screenHeight = mediaQuery.size.height;
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Align(
+            alignment: Alignment.topLeft,
+            child: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(
+                Icons.cancel_outlined,
+                color: Color(0xff313134),
+              ),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                'Share Post',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10.0,
+                mainAxisSpacing: 7.0,
+                childAspectRatio: 3.5,
+              ),
+              itemCount: 13,
+              itemBuilder: (BuildContext context, int index) {
+                List<String> titles = [
+                  'Vasu',
+                  'Het',
+                  'Ashish',
+                  'Pinkesh',
+                  'Vasu',
+                  'Het',
+                  'Ashish',
+                  'Pinkesh',
+                  'Jay',
+                  'Het',
+                  'Ashish',
+                  'Pinkesh',
+                  'Jay',
+                ];
+
+                List<String> imagePaths = [
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                  'assets/images/frame_1.png',
+                ];
+
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _selectedItems[index] = !_selectedItems[index];
+                    });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Color(0xffBFBDB3), // Set the color of the border
+                        width: 1.0, // Set the width of the border
+                      ),
+                      color: _selectedItems[index]
+                          ? Colors.black
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    child: Center(
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            imagePaths[
+                                index], // Display the image from the list
+                            height: 30,
+                            width: 30,
+                          ),
+                          const SizedBox(
+                              width:
+                                  8), // Optional space between image and text
+                          Text(
+                            titles[index],
+                            style: TextStyle(
+                              color: _selectedItems[index]
+                                  ? Colors.white
+                                  : Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Color(0xffBFBDB3),
+                  width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Search field
+                  Container(
+                    width: screenWidth * 0.5,
+                    margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: TextField(
+                      controller: _controller,
+                      decoration: const InputDecoration(
+                        hintText: 'Enter Your Message...',
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+
+                  // IconButton for sharing the message
+                  IconButton(
+                    icon: const Icon(Icons.send),
+                    onPressed: _shareMessage, // Share function when clicked
+                    color: const Color.fromARGB(
+                        255, 82, 81, 79), // Optional: Customize color
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
