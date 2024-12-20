@@ -450,6 +450,7 @@ class _HomePageState extends State<HomePage> {
                           TextButton(
                             onPressed: () {
                               CommentPostBottomSheet.show(context);
+                              // CommentPostBottomSheet.show(context);
                             },
                             child: Column(
                               children: [
@@ -799,7 +800,7 @@ class CommentPostBottomSheet extends StatefulWidget {
                 topRight: Radius.circular(20),
               ), // Circular border
             ),
-            child: const SharePostBottomSheet(),
+            child: const CommentPostBottomSheet(),
           ),
         );
       },
@@ -834,40 +835,63 @@ class _CommentPostBottomSheetState extends State<CommentPostBottomSheet> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Align(
-            alignment: Alignment.topLeft,
-            child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(
-                Icons.cancel_outlined,
-                color: Color(0xff313134),
-              ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                'Share Post',
+          // Align(
+          //   alignment: Alignment.topLeft,
+          //   child: IconButton(
+          //     onPressed: () {
+          //       Navigator.pop(context);
+          //     },
+          //     icon: const Icon(
+          //       Icons.cancel_outlined,
+          //       color: Color(0xff313134),
+          //     ),
+          //   ),
+          // ),
+          // const Padding(
+          //   padding: EdgeInsets.all(8.0),
+          //   child: Align(
+
+          //     alignment: Alignment.center,
+          //     child: Text(
+          //       'Share Post',
+          //       style: TextStyle(
+          //         fontSize: 20,
+          //         fontWeight: FontWeight.bold,
+          //       ),
+          //     ),
+
+          //   ),
+          // ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Comments',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
+              IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(
+                  Icons.arrow_drop_down,
+                  color: Color(0xff313134),
+                ),
+              ),
+            ],
           ),
           Expanded(
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
+                crossAxisCount: 1,
                 crossAxisSpacing: 10.0,
-                mainAxisSpacing: 7.0,
+                mainAxisSpacing: 2.0,
                 childAspectRatio: 3.5,
               ),
-              itemCount: 13,
+              itemCount: 5,
               itemBuilder: (BuildContext context, int index) {
                 List<String> titles = [
                   'Vasu',
@@ -884,16 +908,30 @@ class _CommentPostBottomSheetState extends State<CommentPostBottomSheet> {
                   'Pinkesh',
                   'Jay',
                 ];
+                List<String> colTitle = [
+                  'Vasu',
+                  'Het',
+                  'Ashish',
+                  'Pinkesh',
+                  'Vasu',
+                ];
+                List<String> comments = [
+                  'Claudias new hobby: collecting excuses instead of carnival tickets. 🤷‍♂️',
+                  'Claudia should write a guide: ‘How to Miss Every Carnival—A Masterclass',
+                  'He wants to eat me, devour me, break me and lick than anybody else ',
+                  'people might think imma fake id, but who gives a crap?',
+                  'I’ll make sure all the bad girls are handcuffed and beaten by me carefully #MeToo',
+                ];
+
+                List<String> likes = [
+                  '789',
+                  '896',
+                  '852',
+                  '741',
+                  '789',
+                ];
 
                 List<String> imagePaths = [
-                  'assets/images/frame_1.png',
-                  'assets/images/frame_1.png',
-                  'assets/images/frame_1.png',
-                  'assets/images/frame_1.png',
-                  'assets/images/frame_1.png',
-                  'assets/images/frame_1.png',
-                  'assets/images/frame_1.png',
-                  'assets/images/frame_1.png',
                   'assets/images/frame_1.png',
                   'assets/images/frame_1.png',
                   'assets/images/frame_1.png',
@@ -903,23 +941,14 @@ class _CommentPostBottomSheetState extends State<CommentPostBottomSheet> {
 
                 return GestureDetector(
                   onTap: () {
-                    setState(() {
-                      _selectedItems[index] = !_selectedItems[index];
-                    });
+                    // setState(() {
+                    //   _selectedItems[index] = !_selectedItems[index];
+                    // });
                   },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Color(0xffBFBDB3), // Set the color of the border
-                        width: 1.0, // Set the width of the border
-                      ),
-                      color: _selectedItems[index]
-                          ? Colors.black
-                          : Colors.transparent,
-                      borderRadius: BorderRadius.circular(16.0),
-                    ),
-                    child: Center(
-                      child: Row(
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Image.asset(
                             imagePaths[
@@ -927,22 +956,91 @@ class _CommentPostBottomSheetState extends State<CommentPostBottomSheet> {
                             height: 30,
                             width: 30,
                           ),
-                          const SizedBox(
-                              width:
-                                  8), // Optional space between image and text
-                          Text(
-                            titles[index],
-                            style: TextStyle(
-                              color: _selectedItems[index]
-                                  ? Colors.white
-                                  : Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                          Container(
+                            width: screenWidth * 0.5,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  colTitle[index],
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(
+                                    width:
+                                        8), // Optional space between image and text
+                                Text(
+                                  comments[index],
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  maxLines:
+                                      null, // Allows the text to wrap to multiple lines.
+                                  overflow: TextOverflow
+                                      .visible, // Ensures text shows in the next line.
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      likes[index],
+                                      style: const TextStyle(
+                                        color: Color(0xff595854),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      likes[index],
+                                      style: const TextStyle(
+                                        color: Color(0xff595854),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
+                          Row(
+                            children: [
+                              // add two icons
+                              IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _selectedItems[index] =
+                                        !_selectedItems[index];
+                                  });
+                                },
+                                icon: Icon(
+                                  _selectedItems[index]
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
+                                  color: _selectedItems[index]
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              // add comment icon
+                              IconButton(
+                                onPressed: () {
+                                  // CommentPostBottomSheet.show(context);
+                                },
+                                icon: const Icon(
+                                  Icons.comment,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          )
                         ],
-                      ),
-                    ),
+                      )
+                    ],
                   ),
                 );
               },
@@ -968,7 +1066,7 @@ class _CommentPostBottomSheetState extends State<CommentPostBottomSheet> {
                     child: TextField(
                       controller: _controller,
                       decoration: const InputDecoration(
-                        hintText: 'Enter Your Message...',
+                        hintText: 'Write a comment...',
                         border: InputBorder.none,
                       ),
                     ),
