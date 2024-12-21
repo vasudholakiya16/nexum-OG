@@ -378,32 +378,59 @@ class _HomePageState extends State<HomePage> {
                       ),
                       TextButton(
                           onPressed: () {
-                            // ExitDialog.show(context);
-                            // gentert one dropdown menu
-
                             showModalBottomSheet(
+                              backgroundColor: Colors.transparent,
                               context: context,
                               builder: (BuildContext context) {
-                                return Container(
-                                  height: 150,
-                                  color: Colors.white,
-                                  child: Column(
-                                    children: [
-                                      ListTile(
-                                        title: const Text('Report'),
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                          ExitDialog.show(context);
-                                        },
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 16.0, right: 16.0, left: 16.0),
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                      color: Color(
+                                          0xffFFFCEF), // Background color of the container
+                                      border: Border(
+                                        top: BorderSide(
+                                            color: Color.fromARGB(255, 0, 0, 0),
+                                            width: 2),
+                                        left: BorderSide(
+                                            color: Color.fromARGB(255, 0, 0, 0),
+                                            width: 2),
+                                        right: BorderSide(
+                                            color: Color.fromARGB(255, 0, 0, 0),
+                                            width: 7),
+                                        bottom: BorderSide(
+                                            color: Color.fromARGB(255, 0, 0, 0),
+                                            width: 4),
                                       ),
-                                      ListTile(
-                                        title: const Text('Unfollow'),
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                          Unfollow.show(context);
-                                        },
-                                      ),
-                                    ],
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        topRight: Radius.circular(20),
+                                      ), // Circular border
+                                    ),
+                                    height: 150,
+                                    // color: Colors.white,
+                                    child: Column(
+                                      children: [
+                                        ListTile(
+                                          title: const Text('Report'),
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                            ExitDialog.show(context);
+                                          },
+                                        ),
+                                        const Divider(
+                                          color: Colors.black,
+                                        ),
+                                        ListTile(
+                                          title: const Text('Unfollow'),
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                            Unfollow.show(context);
+                                          },
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 );
                               },
@@ -573,7 +600,7 @@ class Unfollow extends StatefulWidget {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return const ExitDialog();
+        return const Unfollow();
       },
     );
   }

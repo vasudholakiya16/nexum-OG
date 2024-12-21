@@ -61,8 +61,8 @@ class Home extends StatelessWidget {
             BottomNavigationBarItem(
               icon: Image.asset(
                 controller.currentNavIndex.value == 1
-                    ? selectedIcons[2] // Selected icon
-                    : selectedIcons[3], // Default icon
+                    ? selectedIcons[3] // Selected icon
+                    : selectedIcons[2], // Default icon
                 height: 30,
                 width: 30,
               ),
