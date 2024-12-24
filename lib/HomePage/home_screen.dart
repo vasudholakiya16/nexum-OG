@@ -30,12 +30,12 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Color(0xffFFFCEF),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          // mainAxisAlignment: MainAxisAlignment.center,
+          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Code For Top Navigation Bar
             Padding(
-              padding: const EdgeInsets.only(left: 30, top: 50),
+              padding: const EdgeInsets.only(top: 50, left: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -190,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                         height: 20,
                       ),
                       Container(
-                        height: screenHeight * 0.26,
+                        height: screenHeight * 0.29,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: 5,
@@ -212,7 +212,7 @@ class _HomePageState extends State<HomePage> {
                             ];
 
                             return Container(
-                              width: screenWidth * 0.4,
+                              width: screenWidth * 0.43,
                               margin: const EdgeInsets.only(right: 10),
                               decoration: BoxDecoration(
                                 color: const Color(0xffFFFCEF),
@@ -237,7 +237,7 @@ class _HomePageState extends State<HomePage> {
                               child: Padding(
                                 padding: const EdgeInsets.all(10),
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Container(
                                       height: screenHeight * 0.15,
