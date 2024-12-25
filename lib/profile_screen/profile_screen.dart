@@ -12,6 +12,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   List<String> selectedOptions = [];
   List<String> selectedOptions1 = [];
+  List<bool> selectedOptions2 = [false, false];
   final List<Color> lightColors = [
     Colors.lightBlueAccent,
     Colors.lightGreenAccent,
@@ -60,207 +61,282 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final screenHeight = mediaQuery.size.height;
     return Scaffold(
         backgroundColor: const Color(0xffFFFCEF),
-        body: Column(
-          children: [
-            Stack(
-              children: [
-                Positioned.fill(
-                  right: -200,
-                  child: Image.asset('assets/images/imgProfile.png',
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  Positioned.fill(
+                    right: -200,
+                    child: Image.asset('assets/images/imgProfile.png',
 
-                      // Replace with your image path
-                      fit: BoxFit.fitHeight),
-                ),
-                Column(
+                        // Replace with your image path
+                        fit: BoxFit.fitHeight),
+                  ),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, top: 50),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            IconButton(
+                              onPressed: () {},
+                              icon: SvgPicture.asset(
+                                'assets/logo/N.svg',
+                              ),
+                            ),
+                            SizedBox(
+                              width: mediaQuery.size.width / 2,
+                            ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: SvgPicture.asset(
+                                'assets/images/like.svg',
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: SvgPicture.asset(
+                                'assets/logo/message-text.svg',
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 30),
+                        child: Column(
+                          children: [
+                            ClipRRect(
+                                borderRadius:
+                                    BorderRadius.circular(screenHeight * .1),
+                                child: Image.asset(
+                                    'assets/images/profileImg.png',
+                                    width: screenWidth * .29,
+                                    height: screenHeight * .15,
+                                    fit: BoxFit.cover)),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 10),
+              // Profile Name
+              const Text(
+                'Vasu',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff000000)),
+              ),
+              // Profile basic Info
+              const Text(
+                'Flutter Developer',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xff000000)),
+              ),
+              // code for follow and message button
+              Padding(
+                padding: const EdgeInsets.only(left: 50, right: 50, top: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, top: 50),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: SvgPicture.asset(
-                              'assets/logo/N.svg',
-                            ),
-                          ),
-                          SizedBox(
-                            width: mediaQuery.size.width / 2,
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: SvgPicture.asset(
-                              'assets/images/like.svg',
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: SvgPicture.asset(
-                              'assets/logo/message-text.svg',
-                            ),
-                          ),
-                        ],
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Follow',
+                        style: TextStyle(color: Color(0xffffffff)),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: const Color(0xff000000),
+                        backgroundColor: const Color(0xff0C8CE9),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        minimumSize: const Size(125, 40),
+                        side: const BorderSide(
+                            color: Color(0xff000000), width: 2),
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 30),
-                      child: Column(
-                        children: [
-                          ClipRRect(
-                              borderRadius:
-                                  BorderRadius.circular(screenHeight * .1),
-                              child: Image.asset('assets/images/profileImg.png',
-                                  width: screenWidth * .29,
-                                  height: screenHeight * .15,
-                                  fit: BoxFit.cover)),
-                        ],
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Messages',
+                        style: TextStyle(color: Color(0xff000000)),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: const Color(0xff000000),
+                        backgroundColor: const Color(0xffffffff),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        minimumSize: const Size(125, 40),
+                        side: const BorderSide(
+                            color: Color(0xff000000), width: 2),
                       ),
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+              // code for Hobby section
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Container(
+                  height: screenHeight * 0.2,
+                  width: screenWidth * 0.9,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff9ED6FF),
+                    borderRadius: BorderRadius.circular(10),
+                    border: const Border(
+                      top: BorderSide(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        width: 1,
+                      ),
+                      left: BorderSide(
+                          color: Color.fromARGB(255, 0, 0, 0), width: 1),
+                      right: BorderSide(
+                          color: Color.fromARGB(255, 0, 0, 0), width: 5),
+                      bottom: BorderSide(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        width: 7,
+                      ),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      // mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Hobbies',
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xff000000)),
+                        ),
+                        Row(
+                          children: [
+                            SelectedOption(
+                              title: '🎮 Games',
+                              onTap: () => _toggleSelection('🎮 Games'),
+                              color: _getColor('🎮 Games'),
+                            ),
+                            SizedBox(width: 5),
+                            SelectedOption(
+                              title: '🎧 Music',
+                              onTap: () => _toggleSelection('🎧 Music'),
+                              color: _getColor('🎧 Music'),
+                            ),
+                            SizedBox(width: 5),
+                            SelectedOption(
+                              title: '🥂 Clubbing',
+                              onTap: () => _toggleSelection('🥂 Clubbing'),
+                              color: _getColor('🥂 Clubbing'),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 5),
+                        Row(
+                          children: [
+                            SelectedOption(
+                              title: '🎨 Painting',
+                              onTap: () => _toggleSelection('🎨 Painting'),
+                              color: _getColor('🎨 Painting'),
+                            ),
+                            SizedBox(width: 5),
+                            SelectedOption(
+                              title: '📚 Reading',
+                              onTap: () => _toggleSelection('📚 Reading'),
+                              color: _getColor('📚 Reading'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
 
-            const SizedBox(height: 10),
-            // Profile Name
-            const Text(
-              'Vasu',
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xff000000)),
-            ),
-            // Profile basic Info
-            const Text(
-              'Flutter Developer',
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xff000000)),
-            ),
-            // code for follow and message button
-            Padding(
-              padding: const EdgeInsets.only(left: 50, right: 50, top: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Column(
                 children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Follow',
-                      style: TextStyle(color: Color(0xffffffff)),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: const Color(0xff000000),
-                      backgroundColor: const Color(0xff0C8CE9),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      minimumSize: const Size(125, 40),
-                      side:
-                          const BorderSide(color: Color(0xff000000), width: 2),
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Messages',
-                      style: TextStyle(color: Color(0xff000000)),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: const Color(0xff000000),
-                      backgroundColor: const Color(0xffffffff),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      minimumSize: const Size(125, 40),
-                      side:
-                          const BorderSide(color: Color(0xff000000), width: 2),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            // code for Hobby section
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Container(
-                height: screenHeight * 0.2,
-                width: screenWidth * 0.9,
-                decoration: BoxDecoration(
-                  color: const Color(0xff9ED6FF),
-                  borderRadius: BorderRadius.circular(10),
-                  border: const Border(
-                    top: BorderSide(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      width: 1,
-                    ),
-                    left: BorderSide(
-                        color: Color.fromARGB(255, 0, 0, 0), width: 1),
-                    right: BorderSide(
-                        color: Color.fromARGB(255, 0, 0, 0), width: 5),
-                    bottom: BorderSide(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      width: 7,
-                    ),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    // mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  // ToggleButtons for selection
+                  ToggleButtons(
+                    isSelected: selectedOptions2,
+                    onPressed: (int index) {
+                      setState(() {
+                        // Deselect all options and then select the clicked one
+                        selectedOptions2 = [false, false];
+                        selectedOptions2[index] = true;
+                      });
+                    },
+                    borderWidth: 0, // Remove the border width
+                    selectedBorderColor:
+                        Colors.transparent, // Make selected border transparent
+                    borderColor:
+                        Colors.transparent, // Remove border color entirely
+                    fillColor: Colors
+                        .transparent, // Optional: Set fill color to transparent if needed
+                    color:
+                        Colors.black, // You can adjust the text color as needed
+                    selectedColor: Colors.grey,
                     children: [
-                      Text(
-                        'Hobbies',
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xff000000)),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 40, left: 40),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              "assets/images/post.png",
+                              fit: BoxFit.cover,
+                            ),
+                            Text('Posts'),
+                          ],
+                        ),
                       ),
-                      Row(
-                        children: [
-                          SelectedOption(
-                            title: '🎮 Games',
-                            onTap: () => _toggleSelection('🎮 Games'),
-                            color: _getColor('🎮 Games'),
-                          ),
-                          SizedBox(width: 5),
-                          SelectedOption(
-                            title: '🎧 Music',
-                            onTap: () => _toggleSelection('🎧 Music'),
-                            color: _getColor('🎧 Music'),
-                          ),
-                          SizedBox(width: 5),
-                          SelectedOption(
-                            title: '🥂 Clubbing',
-                            onTap: () => _toggleSelection('🥂 Clubbing'),
-                            color: _getColor('🥂 Clubbing'),
-                          ),
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.only(left: 40, right: 40),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              "assets/images/tagged.png",
+                              fit: BoxFit.cover,
+                            ),
+                            Text('Tagged'),
+                          ],
+                        ),
                       ),
-                      SizedBox(height: 5),
-                      Row(
-                        children: [
-                          SelectedOption(
-                            title: '🎨 Painting',
-                            onTap: () => _toggleSelection('🎨 Painting'),
-                            color: _getColor('🎨 Painting'),
-                          ),
-                          SizedBox(width: 5),
-                          SelectedOption(
-                            title: '📚 Reading',
-                            onTap: () => _toggleSelection('📚 Reading'),
-                            color: _getColor('📚 Reading'),
-                          ),
-                        ],
-                      ),
-                    ],
+                    ], // Color for selected option
                   ),
-                ),
-              ),
-            )
-          ],
+
+                  SizedBox(height: 20),
+
+                  // Show content based on the selected option
+                  if (selectedOptions2[0])
+                    Column(
+                      children: [
+                        Text('You selected Option 1'),
+                        Image.asset('assets/images/profileImg.png'),
+                      ],
+                    ),
+
+                  if (selectedOptions2[1])
+                    Column(
+                      children: [
+                        Text('You selected Option 2'),
+                        Image.asset('assets/images/profileImg.png'),
+                        Image.asset('assets/images/profileImg.png'),
+                      ],
+                    ),
+                ],
+              )
+            ],
+          ),
         ));
   }
 }
