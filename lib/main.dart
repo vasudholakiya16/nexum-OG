@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/HomePage/home.dart';
+import 'package:flutter_application_2/Community%20screen/community_screen.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Home(),
+      home: const CommunityScreen(),
       // home: WavyLineScreen6(),
     );
   }
