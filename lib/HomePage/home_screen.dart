@@ -493,7 +493,7 @@ class _HomePageState extends State<HomePage> {
                                 Image.asset(
                                   selectedIcons[1]
                                       ? 'assets/images/star_2.png'
-                                      : "assets/images/star_1.png",
+                                      : "assets/images/star_11.png",
                                   height: 30,
                                   width: 30,
                                 ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/Community%20screen/community_screen.dart';
 import 'package:flutter_application_2/HomePage/home_screen.dart';
-import 'package:flutter_application_2/about_screen/about_screen.dart';
 import 'package:flutter_application_2/controller/home_controller.dart';
 import 'package:flutter_application_2/profile_screen/profile_screen.dart';
 import 'package:flutter_application_2/search_page/search_screen.dart';
@@ -34,7 +34,7 @@ class Home extends StatelessWidget {
           var navBody = [
             const HomePage(),
             const SearchScreen(),
-            const AboutScreen(),
+            const CommunityScreen(),
             const ProfileScreen(),
           ];
 
@@ -70,12 +70,11 @@ class Home extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               icon: Image.asset(
-                controller.currentNavIndex.value == 2
-                    ? selectedIcons[4] // Selected icon
-                    : selectedIcons[5], // Default icon
-                height: 30,
-                width: 30,
-              ),
+                  controller.currentNavIndex.value == 2
+                      ? selectedIcons[5] // Selected icon
+                      : selectedIcons[4], // Default icon
+                  height: 30,
+                  width: 30),
               label: '',
             ),
             BottomNavigationBarItem(

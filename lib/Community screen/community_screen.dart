@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/Community%20screen/community_page.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class CommunityScreen extends StatefulWidget {
   const CommunityScreen({super.key});
@@ -85,26 +87,13 @@ class _CommunityScreenState extends State<CommunityScreen> {
                       'Amazon web services',
                       'Google developers student club is a club for students in which',
                     ];
-                    // Border(
-                    //   top: BorderSide(
-                    //     color: Color.fromARGB(255, 0, 0, 0),
-                    //     width: 1,
-                    //   ),
-                    //   left: BorderSide(
-                    //       color: Color.fromARGB(255, 0, 0, 0), width: 1),
-                    //   right: BorderSide(
-                    //       color: Color.fromARGB(255, 0, 0, 0), width: 5),
-                    //   bottom: BorderSide(
-                    //     color: Color.fromARGB(255, 0, 0, 0),
-                    //     width: 7,
-                    //   ),
-                    // );
 
                     Color cardColor = Color(0xffFFFFFF);
 
                     return GestureDetector(
                       onTap: () {
                         print("Tapped on ${communityTitle[index]}");
+                        Get.to(const CommunityPage());
                       },
                       child: Card(
                         color: cardColor, // Set background color of the Card
