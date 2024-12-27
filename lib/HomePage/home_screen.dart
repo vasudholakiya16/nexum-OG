@@ -169,7 +169,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Positioned.fill(
                   top: 50,
-                  left: -220,
+                  left: -300,
                   child: SvgPicture.asset('assets/images/Star.svg',
                       // Replace with your image path
                       fit: BoxFit.fitHeight),
