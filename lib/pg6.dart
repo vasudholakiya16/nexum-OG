@@ -513,6 +513,7 @@ import 'package:flutter_application_2/button.dart';
 import 'package:flutter_application_2/controller/progress_controller_4.dart';
 import 'package:flutter_application_2/pg7.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WavyLineScreen5 extends StatefulWidget {
   const WavyLineScreen5({super.key});
@@ -605,6 +606,28 @@ class _WavyLineScreen5State extends State<WavyLineScreen5> {
   @override
   void initState() {
     super.initState();
+    _loadSelectedOptions();
+  }
+
+  Future<void> _loadSelectedOptions() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      selectedOptions = prefs.getStringList('selectedHobbies') ?? [];
+      selectedOptions1 = prefs.getStringList('selectedTravels') ?? [];
+    });
+  }
+
+  Future<void> _saveSelectedOptions() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList('selectedHobbies', selectedOptions);
+    await prefs.setStringList('selectedTravels', selectedOptions1);
+
+    // Update the progress value
+    progressController.progress1.value = 0.95;
+
+    // print the _saveSelectedOptions values
+    print('Selected Hobbies: $selectedOptions');
+    print('Selected Travels: $selectedOptions1');
   }
 
   @override
@@ -906,7 +929,7 @@ class _WavyLineScreen5State extends State<WavyLineScreen5> {
                           left: 16.0, top: 8.0, right: 16.0),
                       child: RoundButton(
                         title: 'Next',
-                        onTap: () {
+                        onTap: () async {
                           if (selectedOptions.isEmpty &&
                               selectedOptions1.isEmpty) {
                             // Show an alert dialog if no options are selected
@@ -930,6 +953,8 @@ class _WavyLineScreen5State extends State<WavyLineScreen5> {
                               },
                             );
                           } else {
+                            // Save the selected options
+                            await _saveSelectedOptions();
                             // Print selected options
                             print("Selected Hobbies: $selectedOptions");
                             print(

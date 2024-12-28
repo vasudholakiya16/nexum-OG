@@ -8,6 +8,7 @@ import 'package:flutter_application_2/wavePointer.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WavyLineScreen2 extends StatefulWidget {
   const WavyLineScreen2({super.key});
@@ -58,6 +59,7 @@ class _WavyLineScreen2State extends State<WavyLineScreen2> {
     dropdownController.addListener(() {
       _onNameChanged(dropdownController.text);
     });
+    _loadData(); // Load saved data
   }
 
   @override
@@ -86,6 +88,20 @@ class _WavyLineScreen2State extends State<WavyLineScreen2> {
 
     setState(() {}); // Update UI for error messages
     return isValid;
+  }
+
+  Future<void> _saveData() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('selected_gender', _selectedGender ?? '');
+    await prefs.setString('birthday', code ?? '');
+    print('Data saved: Gender: $_selectedGender, Birthday: $code');
+  }
+
+  Future<void> _loadData() async {
+    final prefs = await SharedPreferences.getInstance();
+    _selectedGender = prefs.getString('selected_gender');
+    code = prefs.getString('birthday');
+    print('Loaded data: Gender: $_selectedGender, Birthday: $code');
   }
 
   @override
@@ -312,13 +328,17 @@ class _WavyLineScreen2State extends State<WavyLineScreen2> {
             right: screenWidth * 0.1,
             child: RoundButton(
               title: 'Next',
-              onTap: () {
+              onTap: () async {
                 if (_areFieldsFilled()) {
-                  // Print the values before navigating
+                  // Save data to SharedPreferences
+                  await _saveData();
+
+                  // Print the values for debugging
                   print('Selected Gender: $_selectedGender');
                   print(
                       'Birthday: $code'); // Pinput value is in DD-MM-YYYY format
 
+                  // Navigate to the next screen
                   Get.to(const WavyLineScreen3());
                   print('Next button tapped');
                 }

@@ -7,6 +7,7 @@ import 'package:flutter_application_2/pg3.dart';
 import 'package:flutter_application_2/wavePointer.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WavyLineScreen extends StatefulWidget {
   const WavyLineScreen({super.key});
@@ -62,6 +63,12 @@ class _WavyLineScreenState extends State<WavyLineScreen> {
     _timer?.cancel();
     namecontroller.dispose();
     super.dispose();
+  }
+
+  Future<void> _storeName(String name) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('user_name', name); // Save name in SharedPreferences
+    print('Name saved: $name');
   }
 
   @override
@@ -186,9 +193,10 @@ class _WavyLineScreenState extends State<WavyLineScreen> {
             right: screenWidth * 0.1,
             child: RoundButton(
               title: 'Next',
-              onTap: () {
-                // Step 3: Validate the form before navigation
+              onTap: () async {
                 if (_formKey.currentState!.validate()) {
+                  // Step 3: Store the name and navigate to the next screen
+                  await _storeName(namecontroller.text);
                   Get.to(const WavyLineScreen2());
                   print(
                       'Next button tapped with valid name: ${namecontroller.text}');

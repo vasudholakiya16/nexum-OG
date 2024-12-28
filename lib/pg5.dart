@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/button.dart';
 import 'package:flutter_application_2/controller/progress_controller_4.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_application_2/pg6.dart';
 import 'package:flutter_application_2/wavePointer.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WavyLineScreen4 extends StatefulWidget {
   const WavyLineScreen4({super.key});
@@ -65,6 +67,8 @@ class _WavyLineScreen4State extends State<WavyLineScreen4> {
     passingYearController.addListener(() {
       _onPassingYearChanged(passingYearController.text);
     });
+    // Retrieve stored data when screen loads
+    _retrieveData();
   }
 
   @override
@@ -93,7 +97,7 @@ class _WavyLineScreen4State extends State<WavyLineScreen4> {
       isValid = false;
     } else {
       final year = int.tryParse(passingYearController.text);
-      final currentYear = DateTime.now().year;
+      final currentYear = DateTime.now().year + 10;
       if (year == null || year < 1900 || year > currentYear) {
         passingYearError = 'Please enter a valid year (1900 - $currentYear)';
         isValid = false;
@@ -104,6 +108,26 @@ class _WavyLineScreen4State extends State<WavyLineScreen4> {
 
     setState(() {});
     return isValid;
+  }
+
+  // Store the data in SharedPreferences
+  Future<void> _storeData() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('selectedCourse', _selectedCourses ?? '');
+    await prefs.setString('passingYear', passingYearController.text);
+    if (kDebugMode) {
+      print(
+          'Data saved Selected Course is :- ${_selectedCourses!} Passing year is ${passingYearController.text}');
+    }
+  }
+
+  // Retrieve data from SharedPreferences
+  Future<void> _retrieveData() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _selectedCourses = prefs.getString('selectedCourse') ?? '';
+      passingYearController.text = prefs.getString('passingYear') ?? '';
+    });
   }
 
   @override
@@ -274,8 +298,9 @@ class _WavyLineScreen4State extends State<WavyLineScreen4> {
             right: screenWidth * 0.1,
             child: RoundButton(
               title: 'Next',
-              onTap: () {
+              onTap: () async {
                 if (_areFieldsFilled()) {
+                  await _storeData();
                   // Print the values before navigating
                   print('Selected Course: $_selectedCourses');
                   print('Passing Year: ${passingYearController.text}');
