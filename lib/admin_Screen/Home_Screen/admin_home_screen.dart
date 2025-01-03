@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/Community%20screen/community_screen.dart';
-import 'package:flutter_application_2/HomePage/home_screen.dart';
+
+import 'package:flutter_application_2/admin_Screen/admin_CommunityScreen/all_community.dart';
+import 'package:flutter_application_2/admin_Screen/admin_Home_Page.dart/admin_Home_Page.dart';
+import 'package:flutter_application_2/admin_Screen/chat_section/admin_chat_screen.dart';
+import 'package:flutter_application_2/admin_Screen/profile_screen/admin_profile_screen.dart';
 import 'package:flutter_application_2/controller/home_controller.dart';
-import 'package:flutter_application_2/profile_screen/profile_screen.dart';
-import 'package:flutter_application_2/search_page/search_screen.dart';
+
 import 'package:get/get.dart';
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class AdminHomeScreen extends StatelessWidget {
+  const AdminHomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +32,10 @@ class Home extends StatelessWidget {
       backgroundColor: const Color(0xffFFFCEF),
       body: Obx(() {
         var navBody = [
-          const HomePage(),
-          const SearchScreen(),
-          const CommunityScreen(),
-          const ProfileScreen(),
+          const AdminHomePage(),
+          const AllCommunity(),
+          const AdminChatScreen(),
+          const AdminProfileScreen(),
         ];
 
         return Column(
