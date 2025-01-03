@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/admin_Screen/Home_Screen/admin_home_screen.dart';
 import 'package:flutter_application_2/button.dart';
+import 'package:get/get.dart';
 
 class AdminAuth extends StatefulWidget {
   const AdminAuth({super.key});
@@ -102,7 +104,11 @@ class _AdminAuthState extends State<AdminAuth> {
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: RoundButton(title: "Login", onTap: () {}),
+              child: RoundButton(
+                  title: "Login",
+                  onTap: () {
+                    Get.to(() => const AdminHomeScreen());
+                  }),
             ),
           ],
         ),

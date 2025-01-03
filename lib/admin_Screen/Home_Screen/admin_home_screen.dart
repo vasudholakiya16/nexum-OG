@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_application_2/admin_Screen/admin_CommunityScreen/all_community.dart';
 import 'package:flutter_application_2/admin_Screen/admin_Home_Page.dart/admin_Home_Page.dart';
 import 'package:flutter_application_2/admin_Screen/chat_section/admin_chat_screen.dart';
 import 'package:flutter_application_2/admin_Screen/profile_screen/admin_profile_screen.dart';
 import 'package:flutter_application_2/controller/home_controller.dart';
-
 import 'package:get/get.dart';
 
 class AdminHomeScreen extends StatelessWidget {
@@ -33,8 +31,8 @@ class AdminHomeScreen extends StatelessWidget {
       body: Obx(() {
         var navBody = [
           const AdminHomePage(),
-          const AllCommunity(),
           const AdminChatScreen(),
+          const AllCommunity(),
           const AdminProfileScreen(),
         ];
 

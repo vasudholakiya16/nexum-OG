@@ -10,6 +10,9 @@ class AdminHomePage extends StatefulWidget {
 class _AdminHomePageState extends State<AdminHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: Color(0xffFFFCEF),
+      body: Center(child: Text('Admin Home Page')),
+    );
   }
 }

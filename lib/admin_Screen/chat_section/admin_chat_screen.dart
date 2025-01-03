@@ -10,6 +10,11 @@ class AdminChatScreen extends StatefulWidget {
 class _AdminChatScreenState extends State<AdminChatScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: Color(0xffFFFCEF),
+      body: Center(
+        child: Text('Admin Chat Screen'),
+      ),
+    );
   }
 }
