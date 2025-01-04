@@ -7,6 +7,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  // await Firebase.initializeApp(
+  //   options: FirebaseOptions(
+  //     apiKey: "YOUR_API_KEY",
+  //     appId: "YOUR_APP_ID",
+  //     messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  //     projectId: "YOUR_PROJECT_ID",
+  //     databaseURL: "https://your-database-name.firebaseio.com",
+  //   ),
+  // );
   try {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('testKey', 'testValue');
@@ -33,7 +42,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const AdminAuth(),
-      // home: Home(),
+      // home: Page1(),
       // home: WavyLineScreen6(),
     );
   }

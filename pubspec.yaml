@@ -48,6 +48,12 @@ dependencies:
   shared_preferences: ^2.3.4
   http: ^1.2.2
   path_provider: ^2.1.5
+  firebase_database: ^11.2.0
+  fluttertoast: ^8.2.10
+  flutter_screenutil: ^5.9.3
+  photo_manager: ^3.6.3
+  firebase_storage: ^12.3.7
+  video_player: ^2.9.2
 
 dev_dependencies:
   flutter_test:

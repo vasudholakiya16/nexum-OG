@@ -350,6 +350,12 @@ class _WavyLineScreen3State extends State<WavyLineScreen3> {
     });
   }
 
+  // void _storeName(String name) async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   await prefs.setString(
+  //       'user_name', name); // Store the name in SharedPreferences
+  // }
+
   void _startProgress() {
     if (_timer == null) {
       const duration = Duration(milliseconds: 100);
