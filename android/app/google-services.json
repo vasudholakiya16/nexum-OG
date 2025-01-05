@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:47953457383:android:6679d93f9a1f6646c5b242",
         "android_client_info": {
-          "package_name": "com.example.flutter_application_2"
+          "package_name": "com.example.app"
         }
       },
       "oauth_client": [],
@@ -48,6 +48,25 @@
         "mobilesdk_app_id": "1:47953457383:android:c87fd39239085b7cc5b242",
         "android_client_info": {
           "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzFgCjq1tk6kQ78Sx_VVD0ONm0puF_DbA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47953457383:android:78f02cd7dcc80a2bc5b242",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_2"
         }
       },
       "oauth_client": [],

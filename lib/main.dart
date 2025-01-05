@@ -1,12 +1,25 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/admin_Screen/auth/admin_auth.dart';
+import 'package:flutter_application_2/pg1.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  Platform.isAndroid
+      ? await Firebase.initializeApp(
+          options: const FirebaseOptions(
+              apiKey: "AIzaSyAzFgCjq1tk6kQ78Sx_VVD0ONm0puF_DbA",
+              appId: "1:47953457383:android:66207fbe3d135352c5b242",
+              messagingSenderId: "47953457383",
+              projectId: "krushimitra-8ba6a"))
+      : await Firebase.initializeApp();
+  FirebaseDatabase.instance.setPersistenceEnabled(true);
+  FirebaseDatabase.instance.setLoggingEnabled(true);
+
   // await Firebase.initializeApp(
   //   options: FirebaseOptions(
   //     apiKey: "YOUR_API_KEY",
@@ -41,8 +54,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const AdminAuth(),
-      // home: Page1(),
+      // home: const AdminAuth(),
+      home: Page1(),
       // home: WavyLineScreen6(),
     );
   }
