@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/button.dart';
 import 'package:flutter_application_2/controller/progress_controller_4.dart';
@@ -169,21 +169,27 @@ class _WavyLineScreen5State extends State<WavyLineScreen5> {
     });
   }
 
-  Future<void> _uploadDataToFirebase() async {
-    final DatabaseReference database = FirebaseDatabase.instance.ref();
+  Future<void> _uploadDataToFirestore() async {
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
     String userId = generateUserId();
-    await database.child('Nexum_OG').child(userId).set({
-      'status': status,
-      'name': savedName,
-      'gender_identity': genderIdentity,
-      'dob': dob,
-      'image_url': imageUrl,
-      'course': course,
-      'passing_year': passingYearError,
-      'selected_hobbies': selectedOptions,
-      'selected_travels': selectedOptions1,
-      'userId': userId,
-    });
+
+    try {
+      await firestore.collection('Nexum_OG').doc(userId).set({
+        'status': status,
+        'name': savedName,
+        'gender_identity': genderIdentity,
+        'dob': dob,
+        'image_url': imageUrl,
+        'course': course,
+        'passing_year': passingYearError,
+        'selected_hobbies': selectedOptions,
+        'selected_travels': selectedOptions1,
+        'userId': userId,
+      });
+      print('Data uploaded to Firestore');
+    } catch (e) {
+      print('Error uploading data to Firestore: $e');
+    }
   }
 
   Future<void> _clearSharedPreferences() async {
@@ -516,17 +522,14 @@ class _WavyLineScreen5State extends State<WavyLineScreen5> {
                           } else {
                             // Save the selected options
                             await _saveSelectedOptions();
-                            // Upload data to Firebase
-                            await _uploadDataToFirebase();
+                            // Upload data to Firestore
+                            await _uploadDataToFirestore();
                             // Clear SharedPreferences
                             await _clearSharedPreferences();
                             // Print selected options
                             print("Selected Hobbies: $selectedOptions");
                             print(
                                 "Selected Traveling Options: $selectedOptions1");
-
-                            print('Data uploaded to Firebase');
-                            // print('Shared Preferences cleared');
 
                             // Navigate to the next screen
                             Get.to(const WavyLineScreen6());

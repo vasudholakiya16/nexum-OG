@@ -1,18 +1,29 @@
+import 'dart:io';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/HomePage/home.dart';
 import 'package:flutter_application_2/button.dart';
+import 'package:flutter_application_2/common/apis.dart';
+import 'package:flutter_application_2/common/dialogs.dart';
 import 'package:flutter_application_2/constent/images.dart';
-import 'package:flutter_application_2/constent/logo.dart';
 import 'package:flutter_application_2/constent/text.dart';
 import 'package:flutter_application_2/controller/progress_controller.dart';
 import 'package:flutter_application_2/pg2.dart';
 import 'package:flutter_application_2/wavePointer.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Page1 extends StatelessWidget {
+class Page1 extends StatefulWidget {
   const Page1({super.key});
 
+  @override
+  State<Page1> createState() => _Page1State();
+}
+
+class _Page1State extends State<Page1> {
   /// Stores data in SharedPreferences
   Future<void> storeData(String key, String value) async {
     final prefs = await SharedPreferences.getInstance();
@@ -27,6 +38,60 @@ class Page1 extends StatelessWidget {
     // prefs.getString(key);
     print('Data retrieved: $key -> $status');
     return prefs.getString(key);
+  }
+
+  _handleGoogleBtnClick(BuildContext context) {
+    //for showing progress bar
+    Dialogs.showProgressBar(context);
+
+    _signInWithGoogle(context).then((user) async {
+      //for hiding progress bar
+      Navigator.pop(context);
+
+      if (user != null) {
+        print('\nUser: ${user.user}');
+        print('\nUserAdditionalInfo: ${user.additionalUserInfo}');
+
+        if (await APIs.userExists() && mounted) {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (_) => const Home()));
+        } else {
+          await APIs.createUser().then((value) {
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (_) => const Home()));
+          });
+        }
+      }
+    });
+  }
+
+  Future<UserCredential?> _signInWithGoogle(BuildContext context) async {
+    try {
+      await InternetAddress.lookup('google.com');
+      // Trigger the authentication flow
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      // Once signed in, return the UserCredential
+      return await APIs.auth.signInWithCredential(credential);
+    } catch (e) {
+      print('\n_signInWithGoogle: $e');
+
+      if (mounted) {
+        Dialogs.showSnackbar(context, 'Something Went Wrong (Check Internet!)');
+      }
+
+      return null;
+    }
   }
 
   @override
@@ -126,8 +191,10 @@ class Page1 extends StatelessWidget {
                 // await storeData('login_method', 'google');
                 // String? method = await retrieveData('login_method');
                 // print('Retrieved method: $method');
+                _handleGoogleBtnClick(context);
+                await storeData('account_status', 'Google');
               },
-              imagePath: connectWithGoogleLogo,
+              imagePath: 'assets/logo/logo1.png',
             ),
           ),
           Positioned(
@@ -144,7 +211,7 @@ class Page1 extends StatelessWidget {
                     // String? method = await retrieveData('login_method');
                     // print('Retrieved method: $method');
                   },
-                  imagePath: connectWithFacebookLogo,
+                  imagePath: 'assets/logo/logo2.png',
                 ),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),

@@ -54,6 +54,8 @@ dependencies:
   photo_manager: ^3.6.3
   firebase_storage: ^12.3.7
   video_player: ^2.9.2
+  google_sign_in: ^6.2.2
+  firebase_messaging: ^15.2.0
 
 dev_dependencies:
   flutter_test:
