@@ -41,48 +41,53 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCEsLku0XMorWHK7D0Wba5wiv0PyZ7O5ew',
-    appId: '1:47953457383:web:144be2a5ada28ecac5b242',
-    messagingSenderId: '47953457383',
-    projectId: 'krushimitra-8ba6a',
-    authDomain: 'krushimitra-8ba6a.firebaseapp.com',
-    storageBucket: 'krushimitra-8ba6a.firebasestorage.app',
-    measurementId: 'G-7RE5R7L00E',
+    apiKey: 'AIzaSyCu-GFCxmBMlln8ceiJedrffOZ3x1BHKC4',
+    appId: '1:288271871324:web:0b53022c1d6aee8209a599',
+    messagingSenderId: '288271871324',
+    projectId: 'emart-fe09a',
+    authDomain: 'emart-fe09a.firebaseapp.com',
+    storageBucket: 'emart-fe09a.appspot.com',
+    measurementId: 'G-5NPBKV41GQ',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAzFgCjq1tk6kQ78Sx_VVD0ONm0puF_DbA',
-    appId: '1:47953457383:android:78f02cd7dcc80a2bc5b242',
-    messagingSenderId: '47953457383',
-    projectId: 'krushimitra-8ba6a',
-    storageBucket: 'krushimitra-8ba6a.firebasestorage.app',
+    apiKey: 'AIzaSyAOfG4M9VD2IWIAuCaFPCOFNNaxeapFhQs',
+    appId: '1:288271871324:android:9913e05e796dd75909a599',
+    messagingSenderId: '288271871324',
+    projectId: 'emart-fe09a',
+    storageBucket: 'emart-fe09a.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyC2FLH6gG8KgH4ge_SlXNls5OllLi2r0B0',
-    appId: '1:47953457383:ios:57dbf423b74ea1e1c5b242',
-    messagingSenderId: '47953457383',
-    projectId: 'krushimitra-8ba6a',
-    storageBucket: 'krushimitra-8ba6a.firebasestorage.app',
+    apiKey: 'AIzaSyAJs6-QAUqEKBCcGyRZx5wO6BTllFuLIL8',
+    appId: '1:288271871324:ios:1bea4e136ab8cfc409a599',
+    messagingSenderId: '288271871324',
+    projectId: 'emart-fe09a',
+    storageBucket: 'emart-fe09a.appspot.com',
+    androidClientId: '288271871324-cbi64iv7uujplluh88dtbal0m8amrhpo.apps.googleusercontent.com',
+    iosClientId: '288271871324-cc2ga5brenfd4vhestdpn7q1op1hffv1.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterApplication2',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyC2FLH6gG8KgH4ge_SlXNls5OllLi2r0B0',
-    appId: '1:47953457383:ios:57dbf423b74ea1e1c5b242',
-    messagingSenderId: '47953457383',
-    projectId: 'krushimitra-8ba6a',
-    storageBucket: 'krushimitra-8ba6a.firebasestorage.app',
+    apiKey: 'AIzaSyAJs6-QAUqEKBCcGyRZx5wO6BTllFuLIL8',
+    appId: '1:288271871324:ios:1bea4e136ab8cfc409a599',
+    messagingSenderId: '288271871324',
+    projectId: 'emart-fe09a',
+    storageBucket: 'emart-fe09a.appspot.com',
+    androidClientId: '288271871324-cbi64iv7uujplluh88dtbal0m8amrhpo.apps.googleusercontent.com',
+    iosClientId: '288271871324-cc2ga5brenfd4vhestdpn7q1op1hffv1.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterApplication2',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyD1iJb7pEQYLdcpkiawgWk-tPObepckCIw',
-    appId: '1:47953457383:web:b95977591a61acfdc5b242',
-    messagingSenderId: '47953457383',
-    projectId: 'krushimitra-8ba6a',
-    authDomain: 'krushimitra-8ba6a.firebaseapp.com',
-    storageBucket: 'krushimitra-8ba6a.firebasestorage.app',
-    measurementId: 'G-2VX8S14Y5S',
+    apiKey: 'AIzaSyBvPPpd8ZoECWORa_03eEx04C3CRqGShO0',
+    appId: '1:288271871324:web:cb1d1c9c97d1306109a599',
+    messagingSenderId: '288271871324',
+    projectId: 'emart-fe09a',
+    authDomain: 'emart-fe09a.firebaseapp.com',
+    storageBucket: 'emart-fe09a.appspot.com',
+    measurementId: 'G-C8TZ7D436X',
   );
+
 }

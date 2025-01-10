@@ -12,10 +12,10 @@ void main() async {
   Platform.isAndroid
       ? await Firebase.initializeApp(
           options: const FirebaseOptions(
-              apiKey: "AIzaSyAzFgCjq1tk6kQ78Sx_VVD0ONm0puF_DbA",
-              appId: "1:47953457383:android:66207fbe3d135352c5b242",
-              messagingSenderId: "47953457383",
-              projectId: "krushimitra-8ba6a"))
+              apiKey: "AIzaSyAOfG4M9VD2IWIAuCaFPCOFNNaxeapFhQs",
+              appId: "1:288271871324:android:da17dacef4f275bd09a599",
+              messagingSenderId: "288271871324",
+              projectId: "emart-fe09a"))
       : await Firebase.initializeApp();
   FirebaseDatabase.instance.setPersistenceEnabled(true);
   FirebaseDatabase.instance.setLoggingEnabled(true);
