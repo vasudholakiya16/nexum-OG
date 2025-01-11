@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/admin_Screen/admin_CommunityScreen/community/add_screen.dart';
+import 'package:get/get.dart';
 
 class AllCommunity extends StatefulWidget {
   const AllCommunity({super.key});
@@ -65,7 +67,7 @@ class _AllCommunityState extends State<AllCommunity> {
           GestureDetector(
             onTap: () {
               // Add your onTap functionality here
-              // Get.to(AddScreen());
+              Get.to(AddScreen());
               print('Post tapped!');
             },
             child: Container(

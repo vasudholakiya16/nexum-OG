@@ -1,8 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/admin_Screen/admin_CommunityScreen/community/addpost_text.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:photo_manager/photo_manager.dart';
 
@@ -95,9 +93,9 @@ class _AddPostScreenState extends State<AddPostScreen> {
               padding: EdgeInsets.symmetric(horizontal: 10.w),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => AddPostTextScreen(_file!),
-                  ));
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //   builder: (context) => AddPostTextScreen(_file!),
+                  // ));
                 },
                 child: Text(
                   'Next',
