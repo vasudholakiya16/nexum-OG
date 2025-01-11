@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/button.dart';
+import 'package:flutter_application_2/splesh_screen/button.dart';
 import 'package:flutter_application_2/controller/progress_controller_2.dart';
-import 'package:flutter_application_2/pg4.dart';
-import 'package:flutter_application_2/wavePointer.dart';
+import 'package:flutter_application_2/splesh_screen/pg4.dart';
+import 'package:flutter_application_2/splesh_screen/wavePointer.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';

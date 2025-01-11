@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/button.dart';
+import 'package:flutter_application_2/splesh_screen/button.dart';
 import 'package:flutter_application_2/common/description.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';

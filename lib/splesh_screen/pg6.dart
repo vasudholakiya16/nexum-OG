@@ -3,9 +3,9 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/button.dart';
+import 'package:flutter_application_2/splesh_screen/button.dart';
 import 'package:flutter_application_2/controller/progress_controller_4.dart';
-import 'package:flutter_application_2/pg7.dart';
+import 'package:flutter_application_2/splesh_screen/pg7.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

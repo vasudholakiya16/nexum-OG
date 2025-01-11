@@ -300,10 +300,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/button.dart';
+import 'package:flutter_application_2/splesh_screen/button.dart';
 import 'package:flutter_application_2/controller/progress_controller_3.dart';
-import 'package:flutter_application_2/pg5.dart';
-import 'package:flutter_application_2/wavePointer.dart';
+import 'package:flutter_application_2/splesh_screen/pg5.dart';
+import 'package:flutter_application_2/splesh_screen/wavePointer.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;

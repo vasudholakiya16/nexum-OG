@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/admin_Screen/Home_Screen/admin_home_screen.dart';
-import 'package:flutter_application_2/button.dart';
+import 'package:flutter_application_2/splesh_screen/button.dart';
 import 'package:get/get.dart';
 
 class AdminAuth extends StatefulWidget {

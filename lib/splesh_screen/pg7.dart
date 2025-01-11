@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/HomePage/home.dart';
 import 'package:flutter_application_2/controller/progress_controller_6.dart';
-import 'package:flutter_application_2/wavePointer.dart';
+import 'package:flutter_application_2/splesh_screen/wavePointer.dart';
 import 'package:get/get.dart';
 
 class WavyLineScreen6 extends StatefulWidget {
