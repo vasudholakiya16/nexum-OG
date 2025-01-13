@@ -804,6 +804,305 @@ class _SharePostBottomSheetState extends State<SharePostBottomSheet> {
 
 // CODE FOR Comment the Post
 
+// class CommentPostBottomSheet extends StatefulWidget {
+//   const CommentPostBottomSheet({Key? key}) : super(key: key);
+
+//   @override
+//   _CommentPostBottomSheetState createState() => _CommentPostBottomSheetState();
+
+//   // Static method to show the SharePostBottomSheet
+//   static void show(BuildContext context) {
+//     showModalBottomSheet(
+//       backgroundColor: Colors.transparent,
+//       context: context,
+//       shape: const RoundedRectangleBorder(
+//         borderRadius: BorderRadius.only(
+//           topLeft: Radius.circular(20),
+//           topRight: Radius.circular(20),
+//         ),
+//       ),
+//       builder: (BuildContext context) {
+//         return Padding(
+//           padding: const EdgeInsets.only(
+//               top: 16.0, right: 16.0, left: 16.0), // Padding around the content
+//           child: Container(
+//             decoration: const BoxDecoration(
+//               color: Color(0xffFFFCEF), // Background color of the container
+//               border: Border(
+//                 top: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 2),
+//                 left: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 2),
+//                 right:
+//                     BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 7),
+//                 bottom:
+//                     BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 4),
+//               ),
+//               borderRadius: BorderRadius.only(
+//                 topLeft: Radius.circular(20),
+//                 topRight: Radius.circular(20),
+//               ), // Circular border
+//             ),
+//             child: const CommentPostBottomSheet(),
+//           ),
+//         );
+//       },
+//     );
+//   }
+// }
+
+// class _CommentPostBottomSheetState extends State<CommentPostBottomSheet> {
+//   List<bool> _selectedItems = List.generate(13, (index) => false);
+
+//   TextEditingController _controller = TextEditingController();
+
+//   void _shareMessage() {
+//     String message = _controller.text.trim();
+//     if (message.isNotEmpty) {
+//       Share.share(message); // Using share_plus to share the message
+//     } else {
+//       // Optionally, show a message if the text field is empty
+//       ScaffoldMessenger.of(context).showSnackBar(
+//         SnackBar(content: Text("Please enter a message to share")),
+//       );
+//     }
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final mediaQuery = MediaQuery.of(context);
+//     final screenWidth = mediaQuery.size.width;
+//     final screenHeight = mediaQuery.size.height;
+//     return Padding(
+//       padding: const EdgeInsets.all(16.0),
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.start,
+//         children: [
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               const Text(
+//                 'Comments',
+//                 style: TextStyle(
+//                   fontSize: 20,
+//                   fontWeight: FontWeight.bold,
+//                 ),
+//               ),
+//               IconButton(
+//                 onPressed: () {
+//                   Navigator.pop(context);
+//                 },
+//                 icon: const Icon(
+//                   Icons.arrow_drop_down,
+//                   color: Color(0xff313134),
+//                 ),
+//               ),
+//             ],
+//           ),
+//           Expanded(
+//             child: GridView.builder(
+//               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+//                 crossAxisCount: 1,
+//                 crossAxisSpacing: 10.0,
+//                 mainAxisSpacing: 2.0,
+//                 childAspectRatio: 3.5,
+//               ),
+//               itemCount: 5,
+//               itemBuilder: (BuildContext context, int index) {
+//                 List<String> titles = [
+//                   'Vasu',
+//                   'Het',
+//                   'Ashish',
+//                   'Pinkesh',
+//                   'Vasu',
+//                   'Het',
+//                   'Ashish',
+//                   'Pinkesh',
+//                   'Jay',
+//                   'Het',
+//                   'Ashish',
+//                   'Pinkesh',
+//                   'Jay',
+//                 ];
+//                 List<String> colTitle = [
+//                   'Vasu',
+//                   'Het',
+//                   'Ashish',
+//                   'Pinkesh',
+//                   'Vasu',
+//                 ];
+//                 List<String> comments = [
+//                   'Claudias new hobby: collecting excuses instead of carnival tickets. 🤷‍♂️',
+//                   'Claudia should write a guide: ‘How to Miss Every Carnival—A Masterclass',
+//                   'He wants to eat me, devour me, break me and lick than anybody else ',
+//                   'people might think imma fake id, but who gives a crap?',
+//                   'I’ll make sure all the bad girls are handcuffed and beaten by me carefully #MeToo',
+//                 ];
+
+//                 List<String> likes = [
+//                   '789',
+//                   '896',
+//                   '852',
+//                   '741',
+//                   '789',
+//                 ];
+
+//                 List<String> imagePaths = [
+//                   'assets/images/frame_1.png',
+//                   'assets/images/frame_1.png',
+//                   'assets/images/frame_1.png',
+//                   'assets/images/frame_1.png',
+//                   'assets/images/frame_1.png',
+//                 ];
+
+//                 return GestureDetector(
+//                   onTap: () {
+//                     // setState(() {
+//                     //   _selectedItems[index] = !_selectedItems[index];
+//                     // });
+//                   },
+//                   child: Column(
+//                     children: [
+//                       Row(
+//                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                         children: [
+//                           Image.asset(
+//                             imagePaths[
+//                                 index], // Display the image from the list
+//                             height: 30,
+//                             width: 30,
+//                           ),
+//                           Container(
+//                             width: screenWidth * 0.5,
+//                             child: Column(
+//                               mainAxisAlignment: MainAxisAlignment.start,
+//                               crossAxisAlignment: CrossAxisAlignment.start,
+//                               children: [
+//                                 Text(
+//                                   colTitle[index],
+//                                   style: const TextStyle(
+//                                     color: Colors.black,
+//                                     fontSize: 16,
+//                                     fontWeight: FontWeight.bold,
+//                                   ),
+//                                 ),
+//                                 const SizedBox(
+//                                     width:
+//                                         8), // Optional space between image and text
+//                                 Text(
+//                                   comments[index],
+//                                   style: const TextStyle(
+//                                     color: Colors.black,
+//                                     fontSize: 12,
+//                                     fontWeight: FontWeight.bold,
+//                                   ),
+//                                   maxLines:
+//                                       null, // Allows the text to wrap to multiple lines.
+//                                   overflow: TextOverflow
+//                                       .visible, // Ensures text shows in the next line.
+//                                 ),
+//                                 Row(
+//                                   children: [
+//                                     Text(
+//                                       likes[index],
+//                                       style: const TextStyle(
+//                                         color: Color(0xff595854),
+//                                       ),
+//                                     ),
+//                                     const SizedBox(
+//                                       width: 10,
+//                                     ),
+//                                     Text(
+//                                       likes[index],
+//                                       style: const TextStyle(
+//                                         color: Color(0xff595854),
+//                                       ),
+//                                     ),
+//                                   ],
+//                                 ),
+//                               ],
+//                             ),
+//                           ),
+//                           Row(
+//                             children: [
+//                               // add two icons
+//                               IconButton(
+//                                 onPressed: () {
+//                                   setState(() {
+//                                     _selectedItems[index] =
+//                                         !_selectedItems[index];
+//                                   });
+//                                 },
+//                                 icon: Icon(
+//                                   _selectedItems[index]
+//                                       ? Icons.favorite
+//                                       : Icons.favorite_border,
+//                                   color: _selectedItems[index]
+//                                       ? Colors.red
+//                                       : Colors.black,
+//                                 ),
+//                               ),
+//                               // add comment icon
+//                               IconButton(
+//                                 onPressed: () {
+//                                   // CommentPostBottomSheet.show(context);
+//                                 },
+//                                 icon: const Icon(
+//                                   Icons.comment,
+//                                   color: Colors.black,
+//                                 ),
+//                               ),
+//                             ],
+//                           )
+//                         ],
+//                       )
+//                     ],
+//                   ),
+//                 );
+//               },
+//             ),
+//           ),
+//           Padding(
+//             padding: const EdgeInsets.only(top: 10.0),
+//             child: Container(
+//               decoration: BoxDecoration(
+//                 border: Border.all(
+//                   color: Color(0xffBFBDB3),
+//                   width: 1.0,
+//                 ),
+//                 borderRadius: BorderRadius.circular(16.0),
+//               ),
+//               child: Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   // Search field
+//                   Container(
+//                     width: screenWidth * 0.5,
+//                     margin: const EdgeInsets.symmetric(horizontal: 8.0),
+//                     child: TextField(
+//                       controller: _controller,
+//                       decoration: const InputDecoration(
+//                         hintText: 'Write a comment...',
+//                         border: InputBorder.none,
+//                       ),
+//                     ),
+//                   ),
+
+//                   // IconButton for sharing the message
+//                   IconButton(
+//                     icon: const Icon(Icons.send),
+//                     onPressed: _shareMessage, // Share function when clicked
+//                     color: const Color.fromARGB(
+//                         255, 82, 81, 79), // Optional: Customize color
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
 class CommentPostBottomSheet extends StatefulWidget {
   const CommentPostBottomSheet({Key? key}) : super(key: key);
 
@@ -870,234 +1169,217 @@ class _CommentPostBottomSheetState extends State<CommentPostBottomSheet> {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final screenWidth = mediaQuery.size.width;
-    final screenHeight = mediaQuery.size.height;
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Comments',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+      child: SingleChildScrollView(
+        // Ensures scrollability of the content
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Comments',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(
-                  Icons.arrow_drop_down,
-                  color: Color(0xff313134),
-                ),
-              ),
-            ],
-          ),
-          Expanded(
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
-                crossAxisSpacing: 10.0,
-                mainAxisSpacing: 2.0,
-                childAspectRatio: 3.5,
-              ),
-              itemCount: 5,
-              itemBuilder: (BuildContext context, int index) {
-                List<String> titles = [
-                  'Vasu',
-                  'Het',
-                  'Ashish',
-                  'Pinkesh',
-                  'Vasu',
-                  'Het',
-                  'Ashish',
-                  'Pinkesh',
-                  'Jay',
-                  'Het',
-                  'Ashish',
-                  'Pinkesh',
-                  'Jay',
-                ];
-                List<String> colTitle = [
-                  'Vasu',
-                  'Het',
-                  'Ashish',
-                  'Pinkesh',
-                  'Vasu',
-                ];
-                List<String> comments = [
-                  'Claudias new hobby: collecting excuses instead of carnival tickets. 🤷‍♂️',
-                  'Claudia should write a guide: ‘How to Miss Every Carnival—A Masterclass',
-                  'He wants to eat me, devour me, break me and lick than anybody else ',
-                  'people might think imma fake id, but who gives a crap?',
-                  'I’ll make sure all the bad girls are handcuffed and beaten by me carefully #MeToo',
-                ];
-
-                List<String> likes = [
-                  '789',
-                  '896',
-                  '852',
-                  '741',
-                  '789',
-                ];
-
-                List<String> imagePaths = [
-                  'assets/images/frame_1.png',
-                  'assets/images/frame_1.png',
-                  'assets/images/frame_1.png',
-                  'assets/images/frame_1.png',
-                  'assets/images/frame_1.png',
-                ];
-
-                return GestureDetector(
-                  onTap: () {
-                    // setState(() {
-                    //   _selectedItems[index] = !_selectedItems[index];
-                    // });
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
                   },
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            imagePaths[
-                                index], // Display the image from the list
-                            height: 30,
-                            width: 30,
-                          ),
-                          Container(
-                            width: screenWidth * 0.5,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                  icon: const Icon(
+                    Icons.arrow_drop_down,
+                    color: Color(0xff313134),
+                  ),
+                ),
+              ],
+            ),
+            // Making the GridView scrollable within available space
+            Container(
+              height: 300, // Limit the height of the grid view
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 1,
+                  crossAxisSpacing: 10.0,
+                  mainAxisSpacing: 2.0,
+                  childAspectRatio: 3.5,
+                ),
+                itemCount: 5,
+                itemBuilder: (BuildContext context, int index) {
+                  List<String> titles = [
+                    'Vasu',
+                    'Het',
+                    'Ashish',
+                    'Pinkesh',
+                    'Vasu',
+                    'Het',
+                    'Ashish',
+                    'Pinkesh',
+                    'Jay',
+                    'Het',
+                    'Ashish',
+                    'Pinkesh',
+                    'Jay'
+                  ];
+                  List<String> colTitle = [
+                    'Vasu',
+                    'Het',
+                    'Ashish',
+                    'Pinkesh',
+                    'Vasu',
+                  ];
+                  List<String> comments = [
+                    'Claudias new hobby: collecting excuses instead of carnival tickets. 🤷‍♂️',
+                    'Claudia should write a guide: ‘How to Miss Every Carnival—A Masterclass',
+                    'He wants to eat me, devour me, break me and lick than anybody else ',
+                    'people might think imma fake id, but who gives a crap?',
+                    'I’ll make sure all the bad girls are handcuffed and beaten by me carefully #MeToo',
+                  ];
+                  List<String> likes = ['789', '896', '852', '741', '789'];
+                  List<String> imagePaths = [
+                    'assets/images/frame_1.png',
+                    'assets/images/frame_1.png',
+                    'assets/images/frame_1.png',
+                    'assets/images/frame_1.png',
+                    'assets/images/frame_1.png',
+                  ];
+
+                  return GestureDetector(
+                    onTap: () {
+                      // setState(() {
+                      //   _selectedItems[index] = !_selectedItems[index];
+                      // });
+                    },
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Image.asset(
+                              imagePaths[index],
+                              height: 30,
+                              width: 30,
+                            ),
+                            Flexible(
+                              // Use Flexible to allow space adjustment
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    colTitle[index],
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    comments[index],
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    maxLines: null,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        likes[index],
+                                        style: const TextStyle(
+                                          color: Color(0xff595854),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 10),
+                                      Text(
+                                        likes[index],
+                                        style: const TextStyle(
+                                          color: Color(0xff595854),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Row(
                               children: [
-                                Text(
-                                  colTitle[index],
-                                  style: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
+                                IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _selectedItems[index] =
+                                          !_selectedItems[index];
+                                    });
+                                  },
+                                  icon: Icon(
+                                    _selectedItems[index]
+                                        ? Icons.favorite
+                                        : Icons.favorite_border,
+                                    color: _selectedItems[index]
+                                        ? Colors.red
+                                        : Colors.black,
                                   ),
                                 ),
-                                const SizedBox(
-                                    width:
-                                        8), // Optional space between image and text
-                                Text(
-                                  comments[index],
-                                  style: const TextStyle(
+                                IconButton(
+                                  onPressed: () {
+                                    // CommentPostBottomSheet.show(context);
+                                  },
+                                  icon: const Icon(
+                                    Icons.comment,
                                     color: Colors.black,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
                                   ),
-                                  maxLines:
-                                      null, // Allows the text to wrap to multiple lines.
-                                  overflow: TextOverflow
-                                      .visible, // Ensures text shows in the next line.
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      likes[index],
-                                      style: const TextStyle(
-                                        color: Color(0xff595854),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      likes[index],
-                                      style: const TextStyle(
-                                        color: Color(0xff595854),
-                                      ),
-                                    ),
-                                  ],
                                 ),
                               ],
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              // add two icons
-                              IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    _selectedItems[index] =
-                                        !_selectedItems[index];
-                                  });
-                                },
-                                icon: Icon(
-                                  _selectedItems[index]
-                                      ? Icons.favorite
-                                      : Icons.favorite_border,
-                                  color: _selectedItems[index]
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                              // add comment icon
-                              IconButton(
-                                onPressed: () {
-                                  // CommentPostBottomSheet.show(context);
-                                },
-                                icon: const Icon(
-                                  Icons.comment,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                );
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Color(0xffBFBDB3),
-                  width: 1.0,
-                ),
-                borderRadius: BorderRadius.circular(16.0),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  );
+                },
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // Search field
-                  Container(
-                    width: screenWidth * 0.5,
-                    margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: TextField(
-                      controller: _controller,
-                      decoration: const InputDecoration(
-                        hintText: 'Write a comment...',
-                        border: InputBorder.none,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Color(0xffBFBDB3),
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: screenWidth * 0.5,
+                      margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: TextField(
+                        controller: _controller,
+                        decoration: const InputDecoration(
+                          hintText: 'Write a comment...',
+                          border: InputBorder.none,
+                        ),
                       ),
                     ),
-                  ),
-
-                  // IconButton for sharing the message
-                  IconButton(
-                    icon: const Icon(Icons.send),
-                    onPressed: _shareMessage, // Share function when clicked
-                    color: const Color.fromARGB(
-                        255, 82, 81, 79), // Optional: Customize color
-                  ),
-                ],
+                    IconButton(
+                      icon: const Icon(Icons.send),
+                      onPressed: _shareMessage,
+                      color: const Color.fromARGB(255, 82, 81, 79),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

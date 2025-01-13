@@ -5,7 +5,6 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_application_2/common/model/chat_user.dart';
 import 'package:flutter_application_2/common/model/message.dart';
@@ -170,7 +169,7 @@ class APIs {
         id: user.uid,
         name: user.displayName.toString(),
         email: user.email.toString(),
-        about: "Hey, I'm using We Chat!",
+        about: "Hey, I'm using Nexum OG!",
         image: user.photoURL.toString(),
         createdAt: time,
         isOnline: false,

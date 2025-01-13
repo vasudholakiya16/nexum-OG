@@ -71,7 +71,7 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/admin_Screen/auth/admin_auth.dart';
+import 'package:flutter_application_2/splesh_screen/pg1.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart'; // Import the package
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -120,7 +120,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const AdminAuth(),
+      // home: const AdminAuth(),
+      home: Page1(),
     );
   }
 }
