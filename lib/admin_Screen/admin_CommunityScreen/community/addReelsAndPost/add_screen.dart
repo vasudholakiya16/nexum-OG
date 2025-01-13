@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/admin_Screen/admin_CommunityScreen/community/add_post_screen.dart';
-import 'package:flutter_application_2/admin_Screen/admin_CommunityScreen/community/add_reels_screen.dart';
+import 'package:flutter_application_2/admin_Screen/admin_CommunityScreen/community/addReelsAndPost/add_post_screen.dart';
+import 'package:flutter_application_2/admin_Screen/admin_CommunityScreen/community/addReelsAndPost/add_reels_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddScreen extends StatefulWidget {

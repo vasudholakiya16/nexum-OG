@@ -1,8 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/admin_Screen/admin_CommunityScreen/community/reels_edite_Screen.dart';
-
+import 'package:flutter_application_2/admin_Screen/admin_CommunityScreen/community/addReelsAndPost/reels_edite_Screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:photo_manager/photo_manager.dart';
 
@@ -19,6 +18,7 @@ class _AddReelsScreenState extends State<AddReelsScreen> {
   File? _file;
   int currentPage = 0;
   int? lastPage;
+
   _fetchNewMedia() async {
     lastPage = currentPage;
     final PermissionState ps = await PhotoManager.requestPermissionExtend();
@@ -59,15 +59,17 @@ class _AddReelsScreenState extends State<AddReelsScreen> {
                           padding: EdgeInsets.symmetric(horizontal: 2.w),
                           child: Container(
                             alignment: Alignment.center,
-                            width: 35.w,
+                            width: 25.w, // Adjusted width
                             height: 15.h,
                             child: Row(
                               children: [
-                                Text(
-                                  asset.videoDuration.inMinutes.toString(),
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white,
+                                Expanded(
+                                  child: Text(
+                                    asset.videoDuration.inMinutes.toString(),
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                                 const Text(
@@ -77,11 +79,13 @@ class _AddReelsScreenState extends State<AddReelsScreen> {
                                     color: Colors.white,
                                   ),
                                 ),
-                                Text(
-                                  asset.videoDuration.inSeconds.toString(),
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white,
+                                Expanded(
+                                  child: Text(
+                                    asset.videoDuration.inSeconds.toString(),
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -107,12 +111,12 @@ class _AddReelsScreenState extends State<AddReelsScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _fetchNewMedia();
   }
 
   int indexx = 0;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -138,16 +142,17 @@ class _AddReelsScreenState extends State<AddReelsScreen> {
           ),
           itemBuilder: (context, index) {
             return GestureDetector(
-                onTap: () {
-                  setState(() {
-                    indexx = index;
-                    _file = path[index];
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ReelsEditeScreen(_file!),
-                    ));
-                  });
-                },
-                child: _mediaList[index]);
+              onTap: () {
+                setState(() {
+                  indexx = index;
+                  _file = path[index];
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ReelsEditeScreen(_file!),
+                  ));
+                });
+              },
+              child: _mediaList[index],
+            );
           },
         ),
       ),

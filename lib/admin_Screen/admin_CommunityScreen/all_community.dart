@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/admin_Screen/admin_CommunityScreen/community/add_screen.dart';
+import 'package:flutter_application_2/admin_Screen/admin_CommunityScreen/community/addReelsAndPost/add_screen.dart';
 import 'package:get/get.dart';
 
 class AllCommunity extends StatefulWidget {
