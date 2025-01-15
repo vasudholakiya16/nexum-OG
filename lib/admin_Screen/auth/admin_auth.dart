@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../admin_Home_Page.dart/home_screen_admin.dart';
 
 class AdminLoginScreen extends StatefulWidget {
   const AdminLoginScreen({super.key});
@@ -11,9 +12,8 @@ class AdminLoginScreen extends StatefulWidget {
 
 class _AdminLoginScreenState extends State<AdminLoginScreen> {
   bool _isPasswordVisible = false; // State variable to toggle password visibility
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-
+  TextEditingController emailController = TextEditingController(text: 'meeo@gmail.com');
+  TextEditingController passwordController = TextEditingController(text: '123');
   void loginUser() async {
     final String email = emailController.text.trim();
     final String password = passwordController.text.trim();
@@ -140,7 +140,12 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: ElevatedButton(
-                  onPressed: loginUser,
+                  onPressed: (){
+                    loginUser();
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => AdminHome()));
+
+
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
                     padding: const EdgeInsets.symmetric(
