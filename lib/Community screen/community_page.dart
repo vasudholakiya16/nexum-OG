@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/splesh_screen/button.dart';
 import 'package:flutter_application_2/common/description.dart';
+import 'package:flutter_application_2/splesh_screen/button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -220,19 +220,26 @@ class _CommunityPageState extends State<CommunityPage> {
                               children: [
                                 Row(
                                   children: [
-                                    Image.asset(
-                                      "assets/images/post.png",
-                                      fit: BoxFit.cover,
+                                    Text(
+                                      'Memories',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: selectedOptions2[0]
+                                            ? Colors.black
+                                            : Colors.grey,
+                                      ),
                                     ),
-                                    const Text('Posts'),
                                   ],
                                 ),
                                 if (selectedOptions2[0])
                                   Container(
-                                    margin: const EdgeInsets.only(top: 5),
-                                    height: 2,
-                                    width: 50, // Adjust width of the underline
-                                    color: Colors.black, // Underline color
+                                    height: 5,
+                                    width: 5,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.black, // Underline color
+                                    ),
                                   ),
                               ],
                             ),
@@ -248,19 +255,28 @@ class _CommunityPageState extends State<CommunityPage> {
                               children: [
                                 Row(
                                   children: [
-                                    Image.asset(
-                                      "assets/images/tagged.png",
-                                      fit: BoxFit.cover,
+                                    Text(
+                                      'Events',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: selectedOptions2[1]
+                                            ? Colors.black
+                                            : Colors.grey, // Dynamic color
+                                      ),
                                     ),
-                                    const Text('Tagged'),
                                   ],
                                 ),
                                 if (selectedOptions2[1])
                                   Container(
-                                    margin: const EdgeInsets.only(top: 5),
-                                    height: 2,
-                                    width: 60, // Adjust width of the underline
-                                    color: Colors.black, // Underline color
+                                    // margin: const EdgeInsets.only(top: 5),
+                                    height: 5,
+                                    width: 5,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.black, // Underline color
+                                    ),
+                                    // color: Colors.black, // Underline color
                                   ),
                               ],
                             ),

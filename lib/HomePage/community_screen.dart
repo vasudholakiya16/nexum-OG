@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/Community%20screen/community_screen.dart';
 
 Widget buildCommunityScreen(BuildContext context) {
   final mediaQuery = MediaQuery.of(context);
@@ -9,13 +10,37 @@ Widget buildCommunityScreen(BuildContext context) {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Communities',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Communities',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CommunityScreen(),
+                  ),
+                );
+                print('View All tapped');
+              },
+              child: Text(
+                'View All',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ],
         ),
+        SizedBox(height: 10),
         Container(
           height: screenHeight * 0.14,
           child: ListView.builder(
