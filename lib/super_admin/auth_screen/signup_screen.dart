@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+
 import '../../splesh_screen/button.dart';
 
 class SignupScreenSuperAdmin extends StatefulWidget {
@@ -11,7 +12,8 @@ class SignupScreenSuperAdmin extends StatefulWidget {
 }
 
 class _SignupScreenSuperAdminState extends State<SignupScreenSuperAdmin> {
-  bool _isPasswordVisible = false; // State variable to toggle password visibility
+  bool _isPasswordVisible =
+      false; // State variable to toggle password visibility
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -25,31 +27,67 @@ class _SignupScreenSuperAdminState extends State<SignupScreenSuperAdmin> {
       return;
     }
 
-    final userData = {
-      'name': nameController.text,
-      'email': emailController.text,
-      'password': passwordController.text,
-      'clubType': selectedClubType,
-    };
-
     try {
-      if (selectedClubType == 'Official Club') {
-        await FirebaseFirestore.instance.collection('official_clubs').add(userData);
-      } else if (selectedClubType == 'Unofficial Club') {
-        await FirebaseFirestore.instance.collection('unofficial_clubs').add(userData);
-      }
-      await FirebaseFirestore.instance.collection('all_clubs').add(userData);
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Data saved successfully.')),
+      // Create user in Firebase Authentication
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
       );
 
+      // Generate a unique document ID
+      final docRef = FirebaseFirestore.instance.collection('all_clubs').doc();
+      final docId = docRef.id;
+
+      final userData = {
+        'id': docId, // Add the ID field
+        'uid': userCredential.user!.uid, // Firebase Authentication UID
+        'name': nameController.text,
+        'email': emailController.text,
+        'password': passwordController.text,
+        'clubType': selectedClubType,
+      };
+
+      // Save to specific collections based on club type
+      if (selectedClubType == 'Official Club') {
+        await FirebaseFirestore.instance
+            .collection('official_clubs')
+            .doc(docId)
+            .set(userData);
+      } else if (selectedClubType == 'Unofficial Club') {
+        await FirebaseFirestore.instance
+            .collection('unofficial_clubs')
+            .doc(docId)
+            .set(userData);
+      }
+
+      // Save to the general "all_clubs" collection
+      await docRef.set(userData);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Signup successful!')),
+      );
+
+      // Clear input fields
       nameController.clear();
       emailController.clear();
       passwordController.clear();
       setState(() {
         selectedClubType = null;
       });
+    } on FirebaseAuthException catch (e) {
+      String errorMessage;
+      if (e.code == 'email-already-in-use') {
+        errorMessage = 'This email is already registered.';
+      } else if (e.code == 'weak-password') {
+        errorMessage = 'The password is too weak.';
+      } else {
+        errorMessage = 'Error: ${e.message}';
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(errorMessage)),
+      );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error saving data: $e')),
@@ -63,7 +101,8 @@ class _SignupScreenSuperAdminState extends State<SignupScreenSuperAdmin> {
     final screenWidth = mediaQuery.size.width;
     return Scaffold(
       backgroundColor: const Color(0xffFFFCEF),
-      body: SingleChildScrollView( // Added to prevent overflow
+      body: SingleChildScrollView(
+        // Added to prevent overflow
         child: Padding(
           padding: EdgeInsets.only(top: mediaQuery.size.height * 0.1),
           child: Column(
@@ -146,7 +185,8 @@ class _SignupScreenSuperAdminState extends State<SignupScreenSuperAdmin> {
                   ),
                   child: TextFormField(
                     controller: passwordController,
-                    obscureText: !_isPasswordVisible, // Toggle password visibility
+                    obscureText:
+                        !_isPasswordVisible, // Toggle password visibility
                     decoration: InputDecoration(
                       hintText: 'Password',
                       border: InputBorder.none,
@@ -188,10 +228,8 @@ class _SignupScreenSuperAdminState extends State<SignupScreenSuperAdmin> {
                         value: selectedClubType,
                         hint: const Text('Select Club Type'),
                         isExpanded: true,
-                        items: [
-                          'Official Club',
-                          'Unofficial Club'
-                        ].map((String value) {
+                        items: ['Official Club', 'Unofficial Club']
+                            .map((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
                             child: Text(value),
@@ -209,9 +247,7 @@ class _SignupScreenSuperAdminState extends State<SignupScreenSuperAdmin> {
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: RoundButton(
-                    title: "Login",
-                    onTap: saveToFirestore),
+                child: RoundButton(title: "Login", onTap: saveToFirestore),
               ),
             ],
           ),

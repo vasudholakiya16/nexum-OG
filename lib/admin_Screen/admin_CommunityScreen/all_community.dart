@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/admin_Screen/admin_CommunityScreen/community/addCommunity/add_community.dart';
 import 'package:flutter_application_2/admin_Screen/admin_CommunityScreen/community/addReelsAndPost/add_screen.dart';
 import 'package:get/get.dart';
 
@@ -24,6 +25,7 @@ class _AllCommunityState extends State<AllCommunity> {
         children: [
           GestureDetector(
             onTap: () {
+              Get.to(AddCommunity());
               // Add your onTap functionality here
               print('Container tapped!');
             },

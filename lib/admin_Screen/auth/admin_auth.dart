@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
 import '../admin_Home_Page.dart/home_screen_admin.dart';
 
 class AdminLoginScreen extends StatefulWidget {
@@ -11,9 +11,12 @@ class AdminLoginScreen extends StatefulWidget {
 }
 
 class _AdminLoginScreenState extends State<AdminLoginScreen> {
-  bool _isPasswordVisible = false; // State variable to toggle password visibility
-  TextEditingController emailController = TextEditingController(text: 'meeo@gmail.com');
-  TextEditingController passwordController = TextEditingController(text: '123');
+  bool _isPasswordVisible =
+      false; // State variable to toggle password visibility
+  TextEditingController emailController =
+      TextEditingController(text: 'het@gmail.com');
+  TextEditingController passwordController =
+      TextEditingController(text: 'het@123');
   void loginUser() async {
     final String email = emailController.text.trim();
     final String password = passwordController.text.trim();
@@ -115,7 +118,8 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                   ),
                   child: TextFormField(
                     controller: passwordController,
-                    obscureText: !_isPasswordVisible, // Toggle password visibility
+                    obscureText:
+                        !_isPasswordVisible, // Toggle password visibility
                     decoration: InputDecoration(
                       hintText: 'Password',
                       border: InputBorder.none,
@@ -140,11 +144,10 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: ElevatedButton(
-                  onPressed: (){
+                  onPressed: () {
                     loginUser();
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => AdminHome()));
-
-
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AdminHome()));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
