@@ -25,7 +25,7 @@ class _AllCommunityState extends State<AllCommunity> {
         children: [
           GestureDetector(
             onTap: () {
-              Get.to(AddCommunity());
+              Get.to(UploadItem());
               // Add your onTap functionality here
               print('Container tapped!');
             },
